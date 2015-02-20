@@ -72,9 +72,10 @@ function newSession(authData) {
 	var d = new Date();
 	var sessionString = authData.user+authData.password+secret+d.getTime();
 	var sessionStringEncrypted = encrypt(sessionString);
-	logger.debug(sessionID(sessions,authData.user));
+	var sesid = sessionID(sessions,authData.user);
+	logger.debug(sesid<0?"New session":"Replacing session")
 	// Remove the user session from the array if they already have one so each user can only have one session at a time
-	sessions.splice(sessionID(sessions,authData.user),1);
+	sessions.splice(sesid,1);
 	// Add the user and session key to the array
 	sessions.push({"user":authData.user,"key":sessionStringEncrypted});
 	return sessionStringEncrypted;

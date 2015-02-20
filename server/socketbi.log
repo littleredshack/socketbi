@@ -334,3 +334,67 @@
 2015-02-20T22:34:36.129Z - debug:  user=glen, key=03d9ba9539735bb2fcfcb7dc537bc883
 2015-02-20T22:34:38.554Z - debug: datarequest
 2015-02-20T22:34:38.554Z - debug:  key=03d9ba9539735bb2fcfcb7dc537bc883, data=My data from button
+2015-02-20T23:45:43.707Z - debug: Settings: 
+{
+   "port": 3080,
+   "secret": "secret",
+   "logging": {
+      "file": {
+         "filename": "socketbi.log",
+         "loglevel": "debug"
+      },
+      "console": {
+         "loglevel": "debug"
+      }
+   }
+}
+2015-02-20T23:45:43.949Z - info: SocketBI server listening on port 3080
+2015-02-20T23:46:13.102Z - debug: Settings: 
+{
+   "port": 3080,
+   "secret": "secret",
+   "logging": {
+      "file": {
+         "filename": "socketbi.log",
+         "loglevel": "debug"
+      },
+      "console": {
+         "loglevel": "debug"
+      }
+   }
+}
+2015-02-20T23:46:13.284Z - info: SocketBI server listening on port 3080
+2015-02-20T23:46:47.810Z - debug: connection
+2015-02-20T23:46:49.812Z - debug: -1
+2015-02-20T23:46:49.813Z - debug:  user=glen, key=44067b694f5e320d7c82b4cfa102006b
+2015-02-20T23:46:52.298Z - debug: datarequest
+2015-02-20T23:46:52.298Z - debug:  key=44067b694f5e320d7c82b4cfa102006b, data=My data from button
+2015-02-20T23:49:03.072Z - debug: Settings: 
+{
+   "port": 3080,
+   "secret": "secret",
+   "logging": {
+      "file": {
+         "filename": "socketbi.log",
+         "loglevel": "debug"
+      },
+      "console": {
+         "loglevel": "debug"
+      }
+   }
+}
+2015-02-20T23:49:03.252Z - info: SocketBI server listening on port 3080
+2015-02-20T23:49:03.499Z - debug: connection
+2015-02-20T23:49:09.541Z - debug: datarequest
+2015-02-20T23:49:09.543Z - debug:  key=44067b694f5e320d7c82b4cfa102006b, data=My data from button
+2015-02-20T23:49:09.544Z - warn: unauthorised data request from ::1
+2015-02-20T23:49:11.470Z - debug: New session
+2015-02-20T23:49:11.473Z - debug:  user=glen, key=ae16033d9431c1b8e3bbf912fd5c8676
+2015-02-20T23:49:13.227Z - debug: datarequest
+2015-02-20T23:49:13.228Z - debug:  key=ae16033d9431c1b8e3bbf912fd5c8676, data=My data from button
+2015-02-20T23:49:16.669Z - debug: datarequest
+2015-02-20T23:49:16.669Z - debug:  key=ae16033d9431c1b8e3bbf912fd5c8676, data=My data from button
+2015-02-20T23:49:20.964Z - debug: Replacing session
+2015-02-20T23:49:20.964Z - debug:  user=glen, key=7a7d4697a3e8162a16fb569f671b9050
+2015-02-20T23:49:23.015Z - debug: datarequest
+2015-02-20T23:49:23.015Z - debug:  key=7a7d4697a3e8162a16fb569f671b9050, data=My data from button
