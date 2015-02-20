@@ -1,0 +1,19 @@
+{
+  "app": {
+	"port" : 3080,
+	"secret" : "secret",
+	"logging" : {
+		"file" : {
+			"filename" : "socketbi.log",
+			"loglevel" : "debug"
+		},
+		"console" : {
+			"loglevel" : "debug"
+		}
+	}
+  },
+  "database": {
+    "host": "127.0.0.1",
+    "port": 5984
+  }
+}

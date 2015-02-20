@@ -1,0 +1,336 @@
+{"level":"debug","message":"sessionID function","timestamp":"2015-02-20T21:43:15.459Z"}
+{"level":"debug","message":"sessionID function","timestamp":"2015-02-20T21:43:15.461Z"}
+2015-02-20T21:47:09.447Z - debug: sessionID function
+2015-02-20T21:47:09.450Z - debug: sessionID function
+2015-02-20T21:48:29.332Z - debug: connection
+2015-02-20T21:49:29.984Z - debug:  port=3080, secret=secret
+2015-02-20T21:49:30.212Z - debug: connection
+2015-02-20T21:56:18.190Z - debug:  port=3080, secret=secret, filename=socketbi.log, loglevel=debug, loglevel=debug
+2015-02-20T21:56:19.654Z - debug: connection
+2015-02-20T21:57:11.651Z - debug: App settings
+2015-02-20T21:57:11.655Z - debug:  port=3080, secret=secret, filename=socketbi.log, loglevel=debug, loglevel=debug
+2015-02-20T21:57:12.004Z - debug: connection
+2015-02-20T21:57:38.864Z - debug: Settings: [object Object]
+2015-02-20T21:57:39.076Z - debug: connection
+2015-02-20T21:59:14.177Z - debug: Settings: {"port":3080,"secret":"secret","logging":{"file":{"filename":"socketbi.log","loglevel":"debug"},"console":{"loglevel":"debug"}}}
+2015-02-20T21:59:14.488Z - debug: connection
+2015-02-20T22:00:45.644Z - debug: Settings: {"port":3080,"secret":"secret","logging":{"file":{"filename":"socketbi.log","loglevel":"debug"},"console":{"loglevel":"debug"}}}
+2015-02-20T22:00:49.054Z - debug: connection
+2015-02-20T22:02:04.869Z - debug: Settings: {
+	"port": 3080,
+	"secret": "secret",
+	"logging": {
+		"file": {
+			"filename": "socketbi.log",
+			"loglevel": "debug"
+		},
+		"console": {
+			"loglevel": "debug"
+		}
+	}
+}
+2015-02-20T22:02:05.253Z - debug: connection
+2015-02-20T22:02:24.585Z - debug: Settings: 
+{
+	"port": 3080,
+	"secret": "secret",
+	"logging": {
+		"file": {
+			"filename": "socketbi.log",
+			"loglevel": "debug"
+		},
+		"console": {
+			"loglevel": "debug"
+		}
+	}
+}
+2015-02-20T22:02:25.127Z - debug: connection
+2015-02-20T22:02:40.783Z - debug: Settings: 
+{
+   "port": 3080,
+   "secret": "secret",
+   "logging": {
+      "file": {
+         "filename": "socketbi.log",
+         "loglevel": "debug"
+      },
+      "console": {
+         "loglevel": "debug"
+      }
+   }
+}
+2015-02-20T22:02:41.121Z - debug: connection
+2015-02-20T22:04:06.202Z - debug: Settings: 
+{
+   "port": 3080,
+   "secret": "secret",
+   "logging": {
+      "file": {
+         "filename": "socketbi.log",
+         "loglevel": "debug"
+      },
+      "console": {
+         "loglevel": "info"
+      }
+   }
+}
+2015-02-20T22:04:06.674Z - debug: connection
+2015-02-20T22:04:16.801Z - debug: sessionID function
+2015-02-20T22:04:16.803Z - debug: -1
+2015-02-20T22:04:16.803Z - debug: sessionID function
+2015-02-20T22:04:16.805Z - debug:  user=glen, key=47a5c05761d81979388f783ce0b3561e
+2015-02-20T22:04:32.192Z - debug: Settings: 
+{
+   "port": 3080,
+   "secret": "secret",
+   "logging": {
+      "file": {
+         "filename": "socketbi.log",
+         "loglevel": "info"
+      },
+      "console": {
+         "loglevel": "info"
+      }
+   }
+}
+2015-02-20T22:04:32.447Z - debug: connection
+2015-02-20T22:04:37.840Z - debug: sessionID function
+2015-02-20T22:04:37.841Z - debug: -1
+2015-02-20T22:04:37.842Z - debug: sessionID function
+2015-02-20T22:04:37.844Z - debug:  user=glen, key=b573040c10b2cfdc2bf1a9f54504713e
+2015-02-20T22:04:39.411Z - debug: datarequest
+2015-02-20T22:04:39.412Z - debug:  key=b573040c10b2cfdc2bf1a9f54504713e, data=My data from button
+2015-02-20T22:05:51.985Z - debug: Settings: 
+{
+   "port": 3080,
+   "secret": "secret",
+   "logging": {
+      "file": {
+         "filename": "socketbi.log",
+         "loglevel": "debug"
+      },
+      "console": {
+         "loglevel": "info"
+      }
+   }
+}
+2015-02-20T22:05:54.321Z - debug: connection
+2015-02-20T22:06:05.298Z - debug: Settings: 
+{
+   "port": 3080,
+   "secret": "secret",
+   "logging": {
+      "file": {
+         "filename": "socketbi.log",
+         "loglevel": "debug"
+      },
+      "console": {
+         "loglevel": "debug"
+      }
+   }
+}
+2015-02-20T22:06:05.608Z - debug: connection
+2015-02-20T22:07:05.343Z - debug: connection
+2015-02-20T22:07:08.910Z - debug: sessionID function
+2015-02-20T22:07:08.911Z - debug: -1
+2015-02-20T22:07:08.912Z - debug: sessionID function
+2015-02-20T22:07:08.914Z - debug:  user=glen, key=77b43d8351ede8ceaf7c09d06cc2edc4
+2015-02-20T22:09:07.998Z - debug: Settings: 
+{
+   "port": 3080,
+   "secret": "secret",
+   "logging": {
+      "file": {
+         "filename": "socketbi.log",
+         "loglevel": "debug"
+      },
+      "console": {
+         "loglevel": "debug"
+      }
+   }
+}
+2015-02-20T22:09:08.429Z - debug: connection
+2015-02-20T22:09:11.163Z - debug: connection
+2015-02-20T22:09:12.977Z - debug: -1
+2015-02-20T22:09:12.979Z - debug:  user=glen, key=4b88b3c5f14f5708240686a5087b8524
+2015-02-20T22:09:18.947Z - debug: datarequest
+2015-02-20T22:09:18.947Z - debug:  key=4b88b3c5f14f5708240686a5087b8524, data=My data from button
+2015-02-20T22:09:21.168Z - debug: 0
+2015-02-20T22:09:21.168Z - debug:  user=glen, key=cb185b82590fb22bf75df341dcbb59aa
+2015-02-20T22:09:24.225Z - debug: datarequest
+2015-02-20T22:09:24.225Z - debug:  key=cb185b82590fb22bf75df341dcbb59aa, data=My data from button
+2015-02-20T22:11:19.438Z - debug: Settings: 
+{
+   "port": 3080,
+   "secret": "secret",
+   "logging": {
+      "file": {
+         "filename": "socketbi.log",
+         "loglevel": "debug"
+      },
+      "console": {
+         "loglevel": "debug"
+      }
+   }
+}
+2015-02-20T22:11:19.627Z - info: Listening on port 3080
+2015-02-20T22:11:19.784Z - debug: connection
+2015-02-20T22:11:44.657Z - debug: Settings: 
+{
+   "port": 3080,
+   "secret": "secret",
+   "logging": {
+      "file": {
+         "filename": "socketbi.log",
+         "loglevel": "debug"
+      },
+      "console": {
+         "loglevel": "debug"
+      }
+   }
+}
+2015-02-20T22:11:44.839Z - info: SocketBI server listening on port 3080
+2015-02-20T22:11:44.881Z - debug: connection
+2015-02-20T22:11:59.542Z - debug: Settings: 
+{
+   "port": 3080,
+   "secret": "secret",
+   "logging": {
+      "file": {
+         "filename": "socketbi.log",
+         "loglevel": "debug"
+      },
+      "console": {
+         "loglevel": "info"
+      }
+   }
+}
+2015-02-20T22:11:59.725Z - info: SocketBI server listening on port 3080
+2015-02-20T22:12:00.150Z - debug: connection
+2015-02-20T22:12:11.248Z - debug: Settings: 
+{
+   "port": 3080,
+   "secret": "secret",
+   "logging": {
+      "file": {
+         "filename": "socketbi.log",
+         "loglevel": "debug"
+      },
+      "console": {
+         "loglevel": "debug"
+      }
+   }
+}
+2015-02-20T22:12:11.433Z - info: SocketBI server listening on port 3080
+2015-02-20T22:12:11.474Z - debug: connection
+2015-02-20T22:15:56.789Z - debug: Settings: 
+{
+   "port": 3080,
+   "secret": "secret",
+   "logging": {
+      "file": {
+         "filename": "socketbi.log",
+         "loglevel": "debug"
+      },
+      "console": {
+         "loglevel": "debug"
+      }
+   }
+}
+2015-02-20T22:15:56.976Z - info: SocketBI server listening on port 3080
+2015-02-20T22:15:57.136Z - debug: connection
+2015-02-20T22:16:25.345Z - debug: connection
+2015-02-20T22:16:26.682Z - debug: connection
+2015-02-20T22:16:29.530Z - debug: datarequest
+2015-02-20T22:16:29.531Z - debug:  data=My data from button
+2015-02-20T22:16:29.531Z - debug: unauthorised data request from ::1
+2015-02-20T22:16:37.401Z - debug: -1
+2015-02-20T22:16:37.402Z - debug:  user=glen, key=dd2d485ee72328ef68a3b725db24b503
+2015-02-20T22:16:40.710Z - debug: datarequest
+2015-02-20T22:16:40.710Z - debug:  key=dd2d485ee72328ef68a3b725db24b503, data=My data from button
+2015-02-20T22:17:06.933Z - debug: datarequest
+2015-02-20T22:17:06.933Z - debug:  key=dd2d485ee72328ef68a3b725db24b503, data=My data from button
+2015-02-20T22:23:22.543Z - debug: Settings: 
+{
+   "port": 3080,
+   "secret": "secret",
+   "logging": {
+      "file": {
+         "filename": "socketbi.log",
+         "loglevel": "debug"
+      },
+      "console": {
+         "loglevel": "debug"
+      }
+   }
+}
+2015-02-20T22:23:22.725Z - info: SocketBI server listening on port 3080
+2015-02-20T22:23:22.861Z - debug: connection
+2015-02-20T22:23:27.521Z - debug: -1
+2015-02-20T22:23:27.523Z - debug:  user=glen, key=b83d9562498a82f6c50192cba487156b
+2015-02-20T22:23:29.013Z - debug: datarequest [object Object]
+2015-02-20T22:23:47.380Z - debug: Settings: 
+{
+   "port": 3080,
+   "secret": "secret",
+   "logging": {
+      "file": {
+         "filename": "socketbi.log",
+         "loglevel": "debug"
+      },
+      "console": {
+         "loglevel": "debug"
+      }
+   }
+}
+2015-02-20T22:23:47.566Z - info: SocketBI server listening on port 3080
+2015-02-20T22:23:47.769Z - debug: connection
+2015-02-20T22:23:49.912Z - debug: -1
+2015-02-20T22:23:49.913Z - debug:  user=glen, key=4e1a339c8234d0556cf7149637405862
+2015-02-20T22:23:51.149Z - debug: datarequest {"key":"4e1a339c8234d0556cf7149637405862","data":"My data from button"}
+2015-02-20T22:25:23.212Z - debug: Settings: 
+{
+   "port": 3080,
+   "secret": "secret",
+   "logging": {
+      "file": {
+         "filename": "socketbi.log",
+         "loglevel": "debug"
+      },
+      "console": {
+         "loglevel": "debug"
+      }
+   }
+}
+2015-02-20T22:25:23.404Z - info: SocketBI server listening on port 3080
+2015-02-20T22:25:23.528Z - debug: connection
+2015-02-20T22:25:28.416Z - debug: datarequest
+2015-02-20T22:25:28.416Z - debug:  key=4e1a339c8234d0556cf7149637405862, data=My data from button
+2015-02-20T22:25:28.417Z - warn: unauthorised data request from ::1
+2015-02-20T22:25:31.812Z - debug: -1
+2015-02-20T22:25:31.813Z - debug:  user=glen, key=93cea44a300470bb303cc3715ad74987
+2015-02-20T22:25:33.131Z - debug: datarequest
+2015-02-20T22:25:33.131Z - debug:  key=93cea44a300470bb303cc3715ad74987, data=My data from button
+2015-02-20T22:25:52.861Z - debug: datarequest
+2015-02-20T22:25:52.861Z - debug:  key=93cea44a300470bb303cc3715ad74987, data=My data from button
+2015-02-20T22:34:27.028Z - debug: Settings: 
+{
+   "port": 3080,
+   "secret": "secret",
+   "logging": {
+      "file": {
+         "filename": "socketbi.log",
+         "loglevel": "debug"
+      },
+      "console": {
+         "loglevel": "debug"
+      }
+   }
+}
+2015-02-20T22:34:27.222Z - info: SocketBI server listening on port 3080
+2015-02-20T22:34:32.198Z - debug: connection
+2015-02-20T22:34:34.288Z - debug: connection
+2015-02-20T22:34:36.128Z - debug: -1
+2015-02-20T22:34:36.129Z - debug:  user=glen, key=03d9ba9539735bb2fcfcb7dc537bc883
+2015-02-20T22:34:38.554Z - debug: datarequest
+2015-02-20T22:34:38.554Z - debug:  key=03d9ba9539735bb2fcfcb7dc537bc883, data=My data from button
