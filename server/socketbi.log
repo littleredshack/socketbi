@@ -14,3 +14,35 @@
 }
 2015-02-20T23:59:30.154Z - info: SocketBI server listening on port 3080
 2015-02-20T23:59:30.260Z - debug: connection
+2015-02-21T00:03:05.725Z - debug: Settings: 
+{
+   "port": 3080,
+   "secret": "secret",
+   "logging": {
+      "file": {
+         "filename": "socketbi.log",
+         "loglevel": "debug"
+      },
+      "console": {
+         "loglevel": "debug"
+      }
+   }
+}
+2015-02-21T00:03:05.905Z - info: SocketBI server listening on port 3080
+2015-02-21T00:03:06.263Z - debug: connection
+2015-02-21T00:03:09.287Z - debug: Settings: 
+{
+   "port": 3080,
+   "secret": "secret",
+   "logging": {
+      "file": {
+         "filename": "socketbi.log",
+         "loglevel": "debug"
+      },
+      "console": {
+         "loglevel": "debug"
+      }
+   }
+}
+2015-02-21T00:03:09.464Z - info: SocketBI server listening on port 3080
+2015-02-21T00:03:10.264Z - debug: connection
