@@ -85,6 +85,24 @@ var sessions = [];
 /***********************************************************/
 
 /***********************************************************/
+var mysql = require('mysql')
+// Define our db creds
+
+var createDBConnection = function(dbname) {
+	logger.debug("createDBConnection " +dbname);
+ 	var db = mysql.createConnection({
+    	host: nconf.get('databases:'+dbname+':host'),
+    	user: nconf.get('databases:'+dbname+':user'),
+    	password: nconf.get('databases:'+dbname+':password'),
+    	database: nconf.get('databases:'+dbname+':database')
+	});
+	return db;
+}
+
+var db1 = createDBConnection("mysql1");
+/***********************************************************/
+
+/***********************************************************/
 var io = require('socket.io').listen(nconf.get('app:port'));
 logger.info("SocketBI server listening on port " +nconf.get('app:port'));
 
@@ -104,17 +122,30 @@ io.on('connection', function (socket) {
 		logger.debug(sessions);
 	});
 	
-	socket.on('datarequest', function (data) {
-		logger.debug('datarequest');
-		logger.debug(data);
+	socket.on('datarequest', function (request) {
+		logger.debug('datarequest'+JSON.stringify(request));
 		// If this session key is not valid then fail data response
-		if (activeSession(sessions,data.key) < 0) {
+		if (activeSession(sessions,request.key) < 0) {
 			logger.warn('unauthorised data request from ' +socket.handshake.address);
 			socket.emit('dataresponse','failed');
 			return;
 		}
-		// If session key is valid then process data request
-		socket.emit('dataresponse','responsedata');
+		// Check for illegal SQL statements and exit if there are any
+		var qx = request.data.query.toUpperCase();
+		if(!qx.match('/DELETE|INSERT/UPDATE/g')) {
+			logger.warn("Illegal query from " +socket.handshake.address);
+			socket.emit("dataresponse","Illegal query")
+			return;
+		}
+		// Run the query and return result on socket
+		db1.query(request.data.query)
+            .on('result', function(dbresponse){
+            	logger.debug(dbresponse);
+                socket.emit('dataresponse',dbresponse);
+            })
+            .on('end', function(){
+                logger.debug("DB END");
+            })
 	});
 	
 	socket.on('disconnect', function () { });

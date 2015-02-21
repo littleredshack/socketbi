@@ -4,49 +4,13 @@
 
 <h3>SOCKETBICLIENT</h3>
 
-<button onclick="loginFunction()">Login</button> 
+<button onclick="SOCKETBI.login({'user':'glen','password':'password'})">Login</button> 
 </br>
 </br>
-<button onclick="myFunction()">Get data</button>
+<button onclick="SOCKETBI.datarequest({'dataSourceName':'mysql1','query':'insert count(*) FROM DUAL'})">Get data</button>
 
 <script src="socket.io.js"></script>
-
-<script>
-	function loginFunction() {
-		socket.emit('auth', {'user':'glen','password':'password'});
-		// expect to get back an auth message in response containing a session token
-		// client needs to send the session token as 'key' in all subsequent messages to server
-	}
-</script>
-
-<script>
-	function myFunction() {
-		socket.emit('datarequest', {'key':sessionStorage.sessionKey,'data':'My data from button'});
-	}
-</script>
-
-<script>
-	var socket = io('localhost:3080');
-	
-	socket.on('connect', function () {
-		console.log('connected');		
-	});
-
-	socket.on('auth', function (data) {
-		// If authentication failed
-		if (data == 'failed') {
-			console.log(data);
-			return;
-		}
-		// If authentication successful then store session key
-		console.log("auth successful " +data);
-		sessionStorage.sessionKey = data;
-	});
-	
-	socket.on('dataresponse', function (data) {
-		console.log(data);
-	});
-</script>
+<script src="socketbi.js"></script>
 
 </body>
 </html>
