@@ -21,6 +21,10 @@ socket.on('dataresponse', function (data) {
 	console.log(data);
 });
 
+socket.on('dblist', function (data) {
+	console.log(data);
+});
+
 SOCKETBI.login = function (creds) {
 	socket.emit('auth', {'user':creds.user,'password':creds.password});
 	// expect to get back an auth message in response containing a session token
@@ -32,3 +36,6 @@ SOCKETBI.datarequest = function(request) {
 	socket.emit('datarequest', {'key':sessionStorage.sessionKey,'data':request});
 }
 
+SOCKETBI.dblist = function() {
+	socket.emit('dblist', {'key':sessionStorage.sessionKey});
+}

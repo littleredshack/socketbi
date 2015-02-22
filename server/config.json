@@ -1,23 +1,31 @@
 {
-  "app": {
-	"port" : 3080,
-	"secret" : "secret",
-	"logging" : {
-		"file" : {
-			"filename" : "socketbi.log",
-			"loglevel" : "debug"
-		},
-		"console" : {
-			"loglevel" : "debug"
+  	"app": {
+		"port" : 3080,
+		"secret" : "secret",
+		"logging" : {
+			"file" : {
+				"filename" : "socketbi.log",
+				"loglevel" : "debug"
+			},
+			"console" : {
+				"loglevel" : "debug"
+			}
 		}
-	}
-  },
-  "databases": { 
+  	},
+  	"databases": { 
   		"mysql1" : {
   			"host": "localhost",
     		"user": "root",
     		"password": "password",
     		"database": "test"
   		}
-  	}
+  	},
+  	"dbs" : [
+  		{
+  			"name":"mysql1"
+  		},
+  		{
+  			"name":"mysql2"
+  		}
+  	]
 }

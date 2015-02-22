@@ -19,8 +19,6 @@ nconf.defaults({
 });
 
 /************************************************************/
-
-/************************************************************/
 // Set up logging
 var winston = require('winston');
 
@@ -40,53 +38,9 @@ var secret = nconf.get('app:secret');
 // Show the entire app config object from nconf
 logger.debug('Settings: \n' + JSON.stringify(nconf.get('app'),null, 3));
 
-// Nodejs encryption with CTR
-var crypto = require('crypto'),
-    algorithm = 'aes-256-ctr',
-    password = secret;
- 
-function encrypt(text){
-	return crypto.createHash("md5").update(text).digest("hex");
-}
-
-function authenticateUser(userData) {
-if (userData.user == 'glen' && userData.password=='password') 
-	return true 
-else 
-	return false;
-}
-
-function sessionID(sessionArray,user) {
-// Returns the array index of a logged in a user or -1
-	return sessionArray.map(function(e) { return e.user; }).indexOf(user) ;
-}
-
-function activeSession(sessionArray,sessionKey) {
-// Returns the array index of a session key or -1
-	return sessionArray.map(function(e) { return e.key; }).indexOf(sessionKey) ;
-}
-
-function newSession(authData) {
-// returns encrypted session identifier
-	// Use authdata, app secret and datetime to calculate a unique session key
-	var d = new Date();
-	var sessionString = authData.user+authData.password+secret+d.getTime();
-	var sessionStringEncrypted = encrypt(sessionString);
-	var sesid = sessionID(sessions,authData.user);
-	logger.debug(sesid<0?"New session":"Replacing session")
-	// Remove the user session from the array if they already have one so each user can only have one session at a time
-	sessions.splice(sesid,1);
-	// Add the user and session key to the array
-	sessions.push({"user":authData.user,"key":sessionStringEncrypted});
-	return sessionStringEncrypted;
-}
-
-var sessions = [];
-/***********************************************************/
-
-/***********************************************************/
+var Sessions = require("./sessions.js");
+var Connections = require('./connections.js')
 var mysql = require('mysql')
-// Define our db creds
 
 var createDBConnection = function(dbname) {
 	logger.debug("createDBConnection " +dbname);
@@ -111,28 +65,51 @@ io.on('connection', function (socket) {
 	
 	socket.on('auth', function(authdata) {
 		// If username and password are not recognised then fail authentication and return
-		if (!authenticateUser(authdata)) { 
+		if (!Sessions.authenticateUser(authdata)) { 
 			socket.emit('auth','failed');
 			return;
 		} 
 		// If user is authenticated then add new session to sessions array
-		var sessionStringEncrypted = newSession(authdata);
+		var sessionStringEncrypted = Sessions.newSession(secret,authdata);
 		// Send session key back in auth message
 		socket.emit('auth',sessionStringEncrypted);
 		logger.debug(sessions);
 	});
-	
-	socket.on('datarequest', function (request) {
-		logger.debug('datarequest'+JSON.stringify(request));
+
+	/********************************************
+	Provide a list of databases that can be used 
+	for a client to query against
+	********************************************/
+	socket.on('dblist', function (request) {
+		logger.debug('dblist');
 		// If this session key is not valid then fail data response
-		if (activeSession(sessions,request.key) < 0) {
+		if (Sessions.activeSession(sessions,request.key) < 0) {
+			logger.warn('unauthorised dblist request from ' +socket.handshake.address);
+			socket.emit('dblist','failed');
+			return;
+		}
+		// Get list of DBs and return to socket
+		Connections.readConfig('config.json', function(c){
+			var dblist = [];
+			c.dbs.forEach(function(entry){
+				dblist.push(entry.name);
+			});
+        	socket.emit('dblist',dblist);
+		})
+	});
+
+	socket.on('datarequest', function (request) {
+		logger.debug('datarequest: '+JSON.stringify(request));
+		// If this session key is not valid then fail data response
+		if (Sessions.activeSession(sessions,request.key) < 0) {
 			logger.warn('unauthorised data request from ' +socket.handshake.address);
 			socket.emit('dataresponse','failed');
 			return;
 		}
-		// Check for illegal SQL statements and exit if there are any
+		// Check for illegal SQL statements and return immediately if there are any
 		var qx = request.data.query.toUpperCase();
-		if(!qx.match('/DELETE|INSERT/UPDATE/g')) {
+		var found = qx.match(/DELETE|INSERT|UPDATE/g); 
+		if( found ) {
 			logger.warn("Illegal query from " +socket.handshake.address);
 			socket.emit("dataresponse","Illegal query")
 			return;
@@ -147,7 +124,7 @@ io.on('connection', function (socket) {
                 logger.debug("DB END");
             })
 	});
-	
+
 	socket.on('disconnect', function () { });
 });
 

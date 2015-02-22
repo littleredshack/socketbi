@@ -7,7 +7,10 @@
 <button onclick="SOCKETBI.login({'user':'glen','password':'password'})">Login</button> 
 </br>
 </br>
-<button onclick="SOCKETBI.datarequest({'dataSourceName':'mysql1','query':'insert count(*) FROM DUAL'})">Get data</button>
+<button onclick="SOCKETBI.dblist()">DB List</button> 
+</br>
+</br>
+<button onclick="SOCKETBI.datarequest({'dataSourceName':'mysql1','query':'select count(*) FROM DUAL'})">Get data</button>
 
 <script src="socket.io.js"></script>
 <script src="socketbi.js"></script>
