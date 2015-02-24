@@ -27,27 +27,20 @@ module.exports = function User(data) {
 };
 */
 
-/*
-exports.bread = function bread() {
-  return ['bread: 2'];
-};
-*/
-
-exports.dblist = function dblist(cfgfile,socket) {
+exports.dblist = function dblist(cfgfile,callback) {
 	var dblist = [];
 	fs.readFile(cfgfile, 'utf8', function (err,contents) {
 		if (err) {
 			return logger.debug("Error reading config " +err);
 	  	}
 	  	cfg = JSON.parse(contents);
-		cfg.datasources.forEach(function(entry){
-			dblist.push(entry.name);
+	  	cfg.datasources.forEach(function(entry){
+		dblist.push(entry.name);
+		if (dblist.length === cfg.datasources.length)
+			callback(null,dblist);
 		});
-		socket.emit('dblist',dblist);
 	})
 }
-
-
 
 /************************************************************/
 

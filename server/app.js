@@ -76,12 +76,9 @@ io.on('connection', function (socket) {
 			return;
 		}
 		// Get list of DBs and return to socket
-  		function makeSandwich() {
-  		return connections.bread();
-		}
-
-		// console.log(connections.bread());
-		connections.dblist('datasources.json', socket);
+		connections.dblist('datasources.json', function(err, result) {
+			socket.emit('dblist',result);
+		});
 	});
 
 	socket.on('datarequest', function (request) {
