@@ -1,7 +1,7 @@
 # socketbi
 BI server and client using socket.io for realtime data access
 
-# Copyright & Licence (MIT License)
+## Copyright & Licence (MIT License)
 
 socketbi.js is © 2012-2013 Little Red Shack Limited
 
