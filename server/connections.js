@@ -33,8 +33,6 @@ exports.bread = function bread() {
 };
 */
 
-async = require("async");
-
 exports.dblist = function dblist(cfgfile,socket) {
 	var dblist = [];
 	fs.readFile(cfgfile, 'utf8', function (err,contents) {
@@ -42,13 +40,9 @@ exports.dblist = function dblist(cfgfile,socket) {
 			return logger.debug("Error reading config " +err);
 	  	}
 	  	cfg = JSON.parse(contents);
-		async.each(cfg.datasources,
-			function(entry){
-				dblist.push(entry.name);
-			},
-			function(err) {
-				console.log(err);	
-			})
+		cfg.datasources.forEach(function(entry){
+			dblist.push(entry.name);
+		});
 		socket.emit('dblist',dblist);
 	})
 }
