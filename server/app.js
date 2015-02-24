@@ -39,21 +39,8 @@ var secret = nconf.get('app:secret');
 logger.debug('Settings: \n' + JSON.stringify(nconf.get('app'),null, 3));
 
 var Sessions = require("./sessions.js");
-var Connections = require('./connections.js')
-var mysql = require('mysql')
+var connections = require('./connections.js')
 
-var createDBConnection = function(dbname) {
-	logger.debug("createDBConnection " +dbname);
- 	var db = mysql.createConnection({
-    	host: nconf.get('databases:'+dbname+':host'),
-    	user: nconf.get('databases:'+dbname+':user'),
-    	password: nconf.get('databases:'+dbname+':password'),
-    	database: nconf.get('databases:'+dbname+':database')
-	});
-	return db;
-}
-
-var db1 = createDBConnection("mysql1");
 /***********************************************************/
 
 /***********************************************************/
@@ -89,13 +76,12 @@ io.on('connection', function (socket) {
 			return;
 		}
 		// Get list of DBs and return to socket
-		Connections.readConfig('config.json', function(c){
-			var dblist = [];
-			c.dbs.forEach(function(entry){
-				dblist.push(entry.name);
-			});
-        	socket.emit('dblist',dblist);
-		})
+  		function makeSandwich() {
+  		return connections.bread();
+		}
+
+		// console.log(connections.bread());
+		connections.dblist('datasources.json', socket);
 	});
 
 	socket.on('datarequest', function (request) {
@@ -115,7 +101,7 @@ io.on('connection', function (socket) {
 			return;
 		}
 		// Run the query and return result on socket
-		db1.query(request.data.query)
+		connections.db1.query(request.data.query)
             .on('result', function(dbresponse){
             	logger.debug(dbresponse);
                 socket.emit('dataresponse',dbresponse);

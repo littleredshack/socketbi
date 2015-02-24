@@ -11,21 +11,5 @@
 				"loglevel" : "debug"
 			}
 		}
-  	},
-  	"databases": { 
-  		"mysql1" : {
-  			"host": "localhost",
-    		"user": "root",
-    		"password": "password",
-    		"database": "test"
-  		}
-  	},
-  	"dbs" : [
-  		{
-  			"name":"mysql1"
-  		},
-  		{
-  			"name":"mysql2"
-  		}
-  	]
+  	}
 }
