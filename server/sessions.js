@@ -1,4 +1,4 @@
-sessions = [];
+global.sessionStore = [];
 
 exports.authenticateUser = function(userData) {
 if (userData.user == 'glen' && userData.password=='password') 
@@ -33,12 +33,12 @@ exports.newSession = function (secret,authData) {
 	var d = new Date();
 	var sessionString = authData.user+authData.password+secret+d.getTime();
 	var sessionStringEncrypted = encrypt(sessionString);
-	var sesid = sessionID(sessions,authData.user);
+	var sesid = sessionID(sessionStore,authData.user);
 	// logger.debug(sesid<0?"New session":"Replacing session")
 	// Remove the user session from the array if they already have one so each user can only have one session at a time
-	sessions.splice(sesid,1);
+	sessionStore.splice(sesid,1);
 	// Add the user and session key to the array
-	sessions.push({"user":authData.user,"key":sessionStringEncrypted});
+	sessionStore.push({"user":authData.user,"key":sessionStringEncrypted});
 	return sessionStringEncrypted;
 }
 
