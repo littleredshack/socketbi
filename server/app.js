@@ -2,9 +2,9 @@
 Load app config and logging settings, 
 session manager and datasource manager
 /****************************************/
-var settings = require("./settings.js");
-var sessions = require("./sessions.js");
-var connections = require('./connections.js')
+var settings 	= require("./settings.js");
+var sessions 	= require("./sessions.js");
+var connections	= require('./connections.js')
 
 /***********************************************************
 Start the socket
@@ -34,7 +34,7 @@ AUTHENTICATION
 		var sessionStringEncrypted = sessions.newSession(secret,authdata);
 		// Send session key back in auth message
 		socket.emit('auth',sessionStringEncrypted);
-		logger.debug(sessionStore);
+		logger.debug(""+sessionStore.length + " session" +(sessionStore.length>1?"s":""));
 	});
 
 	/********************************************
@@ -50,7 +50,7 @@ AUTHENTICATION
 			return;
 		}
 		// Get list of DBs and return to socket
-		connections.dblist('datasources.json', function(err, result) {
+		connections.dblist(function(err, result) {
 			socket.emit('dblist',result);
 		});
 	});
