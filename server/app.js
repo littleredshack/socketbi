@@ -78,6 +78,8 @@ AUTHENTICATION
 		connections.query(request.data, function(err, result) {
 			if(err) {
 				logger.debug(err);
+				socket.emit('dataresponse',err);
+				return;
 			}
 			socket.emit('dataresponse',result);
 		}); 

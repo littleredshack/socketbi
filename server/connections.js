@@ -58,6 +58,12 @@ exports.query = function query(q,callback) {
 	logger.debug("connections.query: " +JSON.stringify(q));
 	// Get the index of this datasource so that can use it later
 	var indexOfDataSource = cfg.datasources.map(function(e) { return e.name; }).indexOf(q.dataSourceName) ;
+	// Check that we have a valid connection config for this connection
+	if(!cfg.datasources[indexOfDataSource].connection) { 
+		callback("Invalid connection settings") ;
+		return;
+
+	}
 	// Check if this datasource is already connected
 	if (cfg.datasources[indexOfDataSource].state != "connected") {
 		// if it's not connected then connect it and store the connection as this.'db' to use for making future db calls
@@ -67,7 +73,11 @@ exports.query = function query(q,callback) {
 		cfg.datasources[indexOfDataSource].state = "connected";
 	}
 	// use the index to get the stored data connection and run the query 
-	cfg.datasources[indexOfDataSource].db.query(q.query) 
+	cfg.datasources[indexOfDataSource].db.query(q.query)
+		.on('error', function(err){
+			logger.debug(err.code);
+			callback("Invalid query",err);
+		}) 
         .on('result', function(dbresponse){
         	logger.debug(dbresponse);
         	// send back the query result

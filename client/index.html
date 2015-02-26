@@ -7,25 +7,50 @@
 Username: <input type="text" name="username">
 Password: <input type="password" name="password">
 
-<button onclick="SOCKETBI.login({'user':document.getElementsByName('username')[0].value,'password':document.getElementsByName('password')[0].value})">Login</button> 
+<button onclick="myLoginFunction()">Login</button> 
 </br>
 </br>
 <button onclick="SOCKETBI.getDBList()">Get DB List</button> 
+
+<select id="dropdown" name="dropdown"></select>
 </br>
 </br>
-<select id="dropdown"></select>
+Query:</br>
+<textarea rows="4" cols="50" name="dataquery"></textarea>
+</br>
+<button onclick="myDataRequest()">Get data</button>
 </br>
 </br>
-<button onclick="SOCKETBI.datarequest({'dataSourceName':'mysql1','query':'select count(*) FROM DUAL'})">Get data</button>
+<div id="queryresults"></div>
 
 <script src="socket.io.js"></script>
 <script src="socketbi.js"></script>
 <script src="client.js"></script>
 
 <script>
-myEventHandler = function (e) {
+myDataRequest = function () {
+	var q = document.getElementsByName('dataquery')[0].value;
+	SOCKETBI.datarequest ({
+		'dataSourceName': document.getElementsByName('dropdown')[0].value,
+		'query'			: q == '' ? 'select count(*) FROM DUAL' : q 
+	})
+}
+
+myLoginFunction = function () {
+	SOCKETBI.login({
+		'user'		: document.getElementsByName('username')[0].value,
+		'password'	: document.getElementsByName('password')[0].value
+	})
+}
+
+myDBListHandler = function (e) {
 	console.log(e.data);
 	var x = document.getElementById("dropdown");
+	var i;
+    for(i=x.options.length-1;i>=0;i--)
+    {
+        x.remove(i);
+    }
 	e.data.map( function(item){
 		var option = document.createElement("option");
 	    option.text = item;
@@ -33,9 +58,15 @@ myEventHandler = function (e) {
 	})
 }
 
+myDataResponseHandler = function (e) {
+	console.log(e);
+	document.getElementById("queryresults").innerHTML = "Query result: " + "</br></br>" + JSON.stringify(e.data);
+}
+
 document.addEventListener("DOMContentLoaded", function(event) { 
 	console.log("started");
-	document.addEventListener("SOCKETBI.dbList",myEventHandler,false);
+	document.addEventListener("SOCKETBI.dbList",myDBListHandler,false);
+	document.addEventListener("SOCKETBI.dataresponse",myDataResponseHandler,false);
 });
 </script>
 
