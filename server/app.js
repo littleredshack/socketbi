@@ -1,29 +1,31 @@
 /*****************************************
 Load app config and logging settings, 
-session manager and connection manager
+session manager and datasource manager
 /****************************************/
 var settings = require("./settings.js");
 var sessions = require("./sessions.js");
 var connections = require('./connections.js')
 
-/***********************************************************/
-
-/***********************************************************/
+/***********************************************************
+Start the socket
+***********************************************************/
 var io = require('socket.io').listen(nconf.get('app:port'));
 logger.info("SocketBI server listening on port " +nconf.get('app:port'));
 
 /*************************************************
 Receive initial connection request and open socket
 Note: No authentication required at this point
+TODO: Also not bothering to clean unused sockets yet
 *************************************************/
 io.on('connection', function (socket) {
-	logger.debug('connection');
+	logger.debug('client connection');
 	
 /*************************************************
 AUTHENTICATION
 *************************************************/
 	socket.on('auth', function(authdata) {
-		// If username and password are not recognised then fail authentication and return
+		// If username and password are not recognised then fail authentication
+		// Notify socket and return
 		if (!sessions.authenticateUser(authdata)) { 
 			socket.emit('auth','failed');
 			return;
@@ -57,6 +59,7 @@ AUTHENTICATION
 	Handle data requests
 	********************************************/
 	socket.on('datarequest', function (request) {
+		var db;
 		logger.debug('datarequest: '+JSON.stringify(request));
 		// If this session key is not valid then fail data response
 		if (sessions.activeSession(sessionStore,request.key) < 0) {
@@ -72,15 +75,13 @@ AUTHENTICATION
 			socket.emit("dataresponse","Illegal query")
 			return;
 		}
-		// Run the query and return result on socket
-		connections.db1.query(request.data.query)
-            .on('result', function(dbresponse){
-            	logger.debug(dbresponse);
-                socket.emit('dataresponse',dbresponse);
-            })
-            .on('end', function(){
-                logger.debug("DB END");
-            })
+		// Run the query and send result on socket
+		connections.query(request.data, function(err, result) {
+			if(err) {
+				logger.debug(err);
+			}
+			socket.emit('dataresponse',result);
+		}); 
 	});
 
 	socket.on('disconnect', function () { });
