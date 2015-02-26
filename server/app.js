@@ -59,7 +59,6 @@ AUTHENTICATION
 	Handle data requests
 	********************************************/
 	socket.on('datarequest', function (request) {
-		var db;
 		logger.debug('datarequest: '+JSON.stringify(request));
 		// If this session key is not valid then fail data response
 		if (sessions.activeSession(sessionStore,request.key) < 0) {

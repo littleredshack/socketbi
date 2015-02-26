@@ -4,16 +4,40 @@
 
 <h3>SOCKETBICLIENT</h3>
 
-<button onclick="SOCKETBI.login({'user':'glen','password':'password'})">Login</button> 
+Username: <input type="text" name="username">
+Password: <input type="password" name="password">
+
+<button onclick="SOCKETBI.login({'user':document.getElementsByName('username')[0].value,'password':document.getElementsByName('password')[0].value})">Login</button> 
 </br>
 </br>
-<button onclick="SOCKETBI.dblist()">DB List</button> 
+<button onclick="SOCKETBI.getDBList()">Get DB List</button> 
+</br>
+</br>
+<select id="dropdown"></select>
 </br>
 </br>
 <button onclick="SOCKETBI.datarequest({'dataSourceName':'mysql1','query':'select count(*) FROM DUAL'})">Get data</button>
 
 <script src="socket.io.js"></script>
 <script src="socketbi.js"></script>
+<script src="client.js"></script>
+
+<script>
+myEventHandler = function (e) {
+	console.log(e.data);
+	var x = document.getElementById("dropdown");
+	e.data.map( function(item){
+		var option = document.createElement("option");
+	    option.text = item;
+    	x.add(option);
+	})
+}
+
+document.addEventListener("DOMContentLoaded", function(event) { 
+	console.log("started");
+	document.addEventListener("SOCKETBI.dbList",myEventHandler,false);
+});
+</script>
 
 </body>
 </html>

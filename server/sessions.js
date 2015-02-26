@@ -1,10 +1,10 @@
 global.sessionStore = [];
 
 exports.authenticateUser = function(userData) {
-// if (userData.user == 'glen' && userData.password=='password') 
+if (userData.user == 'glen' && userData.password=='password') 
 	return true 
-//else 
-//	return false;
+else 
+	return false;
 }
 
 var sessionID = function (sessionArray,user) {

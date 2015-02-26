@@ -1,12 +1,13 @@
-var SOCKETBI = SOCKETBI || {};
+SOCKETBI = {};
 
-var socket = io('localhost:3080');
+SOCKETBI.socket = io('localhost:3080');
 
-socket.on('connect', function () {
-	console.log('connected');		
+SOCKETBI.socket.on('connect', function () {
+	console.log('connected');
+	SOCKETBI.connected = true;
 });
 
-socket.on('auth', function (data) {
+SOCKETBI.socket.on('auth', function (data) {
 	// If authentication failed
 	if (data == 'failed') {
 		console.log(data);
@@ -14,28 +15,36 @@ socket.on('auth', function (data) {
 	}
 	// If authentication successful then store session key
 	console.log("auth successful " +data);
+	SOCKETBI.sessionKey = data;
 	sessionStorage.sessionKey = data;
 });
 
-socket.on('dataresponse', function (data) {
+SOCKETBI.socket.on('dataresponse', function (data) {
 	console.log(data);
 });
 
-socket.on('dblist', function (data) {
-	console.log(data);
+SOCKETBI.socket.on('dblist', function (data) {
+	// console.log(data);
+	SOCKETBI.dblist = data;
+	var evt = document.createEvent("Event");
+	evt.initEvent("SOCKETBI.dbList",true,true);
+	// custom param
+	evt.data = data;
+	// console.log(evt);
+	document.dispatchEvent(evt);
 });
 
 SOCKETBI.login = function (creds) {
-	socket.emit('auth', {'user':creds.user,'password':creds.password});
+	SOCKETBI.socket.emit('auth', {'user':creds.user,'password':creds.password});
 	// expect to get back an auth message in response containing a session token
 	// client needs to send the session token as 'key' in all subsequent messages to server
 }
 
 SOCKETBI.datarequest = function(request) {
 	console.log(request);
-	socket.emit('datarequest', {'key':sessionStorage.sessionKey,'data':request});
+	SOCKETBI.socket.emit('datarequest', {'key':sessionStorage.sessionKey,'data':request});
 }
 
-SOCKETBI.dblist = function() {
-	socket.emit('dblist', {'key':sessionStorage.sessionKey});
+SOCKETBI.getDBList = function() {
+	SOCKETBI.socket.emit('dblist', {'key':sessionStorage.sessionKey});
 }
