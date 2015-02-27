@@ -1,14 +1,25 @@
+// Array Remove - By John Resig (MIT Licensed)
+// http://ejohn.org/blog/javascript-array-remove/
+var removeArrayItem = function(array, from, to) {
+  var rest = array.slice((to || from) + 1 || array.length);
+  array.length = from < 0 ? array.length + from : from;
+  return array.push.apply(array, rest);
+};
+
+// Keep a list of authenticated session keys
 global.sessionStore = [];
 
 global.users = [
-{"username":"glen","password":"password"},
-{"username":"chris","password":"password"}
+	{"username":"glen","password":"password"},
+	{"username":"chris","password":"password"}
 ]
 
 exports.authenticateUser = function(userData) {
-// Get index of this username in users object
+	logger.debug(userData);
+// Get index of this username in users array
+	var uIndex = users.map(function(e) { return e.username; }).indexOf(userData.user) ;
 // Check if the passwords match
-if (userData.user == 'glen' && userData.password=='password') 
+if (users[uIndex].password == userData.password) 
 	return true 
 else 
 	return false;
@@ -41,11 +52,14 @@ exports.newSession = function (secret,authData) {
 	var sessionString = authData.user+authData.password+secret+d.getTime();
 	var sessionStringEncrypted = encrypt(sessionString);
 	var sesid = sessionID(sessionStore,authData.user);
+	logger.debug("sesid: " +sesid);
 	// logger.debug(sesid<0?"New session":"Replacing session")
 	// Remove the user session from the array if they already have one so each user can only have one session at a time
-	sessionStore.splice(sesid,1);
+	// sessionStore.splice(sesid,1);
+	if(sesid >0) removeArrayItem("sessionStore",sesid);
 	// Add the user and session key to the array
 	sessionStore.push({"user":authData.user,"key":sessionStringEncrypted});
+	logger.debug(sessionStore);
 	return sessionStringEncrypted;
 }
 
