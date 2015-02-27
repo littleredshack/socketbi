@@ -55,10 +55,10 @@ exports.newSession = function (secret,authData) {
 	logger.debug("sesid: " +sesid);
 	// If user already has a session then remove the user session from the array if
 	// so each user can only have one session at a time
-	if(sesid > 0) removeArrayItem("sessionStore",sesid);
+	if(sesid >= 0) removeArrayItem(sessionStore,sesid);
 	// Add the user and session key to the array
 	sessionStore.push({"user":authData.user,"key":sessionStringEncrypted});
-	logger.debug(sessionStore);
+	logger.debug(sessionStore,1,3);
 	return sessionStringEncrypted;
 }
 
