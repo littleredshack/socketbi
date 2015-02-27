@@ -31,7 +31,7 @@ AUTHENTICATION
 			return;
 		} 
 		// If user is authenticated then add new session to sessions array
-		var sessionStringEncrypted = sessions.newSession(secret,authdata);
+		var sessionStringEncrypted = sessions.newSession(authdata);
 		// logger.debug(sessionStringEncrypted);
 		// Send session key back in auth message
 		socket.emit('auth',sessionStringEncrypted);

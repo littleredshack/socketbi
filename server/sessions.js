@@ -6,6 +6,11 @@ var removeArrayItem = function(array, from, to) {
   return array.push.apply(array, rest);
 };
 
+// Nodejs encryption with CTR
+var crypto 		= require('crypto'),
+    algorithm 	= 'aes-256-ctr',
+    password 	= secret;	// retrieved from config.json using NCONF in settings.js
+
 // Keep a list of authenticated session keys
 global.sessionStore = [];
 
@@ -30,23 +35,17 @@ var sessionID = function (sessionArray,user) {
 	return sessionArray.map(function(e) { return e.user; }).indexOf(user) ;
 }
 
+// returns encrypted session identifier
+var encrypt = function (text){
+	return crypto.createHash("md5").update(text).digest("hex");
+}
+
 exports.activeSession = function (sessionArray,sessionKey) {
 // Returns the array index of a session key or -1
 	return sessionArray.map(function(e) { return e.key; }).indexOf(sessionKey) ;
 }
 
-exports.newSession = function (secret,authData) {
-// returns encrypted session identifier
-
-	// Nodejs encryption with CTR
-	var crypto = require('crypto'),
-	    algorithm = 'aes-256-ctr',
-	    password = secret;
-	 
-	function encrypt(text){
-		return crypto.createHash("md5").update(text).digest("hex");
-	}
-
+exports.newSession = function (authData) {
 	// Use authdata, app secret and datetime to calculate a unique session key
 	var d = new Date();
 	var sessionString = authData.user+authData.password+secret+d.getTime();
