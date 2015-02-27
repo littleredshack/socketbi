@@ -11,5 +11,28 @@
 				"loglevel" : "debug"
 			}
 		}
-  	}
+  	},
+  	"datasources": [ 
+  		{
+  			"name": "mysql1",
+  			"type": "mysql",
+  			"connection": {
+  				"host": "localhost",
+    			"user": "root",
+    			"password": "password",
+    			"database": "test"
+    		},
+    		"permissions": [
+    			{
+    				"roles": ["list of roles that can query this datasource"]
+    			},
+    			{
+    				"users" : ["list of users who can query this datasource"]
+    			}
+  			]
+  		},	
+  		{
+  			"name": "mysql2"
+  		}
+  	]
 }

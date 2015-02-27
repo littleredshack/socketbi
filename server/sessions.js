@@ -1,6 +1,13 @@
 global.sessionStore = [];
 
+global.users = [
+{"username":"glen","password":"password"},
+{"username":"chris","password":"password"}
+]
+
 exports.authenticateUser = function(userData) {
+// Get index of this username in users object
+// Check if the passwords match
 if (userData.user == 'glen' && userData.password=='password') 
 	return true 
 else 

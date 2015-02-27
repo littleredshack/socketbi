@@ -13,7 +13,7 @@ Used at startup and when dblist is requested
 var readConfig = function(filename, callback){
 	fs.readFile(filename, 'utf8', function (err,contents) {
 		if (err) {
-			return logger.debug("Error reading datasources " +err);
+			return logger.debug("Error reading config " +err);
 		 	}
 		c = JSON.parse(contents);
 		// TODO: Validate config against a template
@@ -23,9 +23,9 @@ var readConfig = function(filename, callback){
 }
 
 // Call readConfig at inital startup
-readConfig('datasources.json', function(config) {
+readConfig('config.json', function(config) {
 	cfg = config;
-	logger.debug("Datasource configs loaded");
+	logger.debug("Config read");
 });
 
 /*****************************************************
@@ -34,8 +34,7 @@ Returns a list of datasource names in a callback
 ******************************************************/
 exports.dblist = function dblist(callback) {
 	var dblist = [];
-	readConfig('datasources.json', function(config) {
-		// Update the contents of cfg object
+	readConfig('config.json', function(config) {
 		cfg = config;
 	  	cfg.datasources.forEach(function(entry) {
 	  		dblist.push(entry.name);
@@ -62,7 +61,6 @@ exports.query = function query(q,callback) {
 	if(!cfg.datasources[indexOfDataSource].connection) { 
 		callback("Invalid connection settings") ;
 		return;
-
 	}
 	// Check if this datasource is already connected
 	if (cfg.datasources[indexOfDataSource].state != "connected") {
@@ -72,19 +70,15 @@ exports.query = function query(q,callback) {
 		// set the state of this connection to connected
 		cfg.datasources[indexOfDataSource].state = "connected";
 	}
-	// use the index to get the stored data connection and run the query 
-	cfg.datasources[indexOfDataSource].db.query(q.query)
-		.on('error', function(err){
-			logger.debug(err.code);
-			callback("Invalid query",err);
-		}) 
-        .on('result', function(dbresponse){
-        	logger.debug(dbresponse);
-        	// send back the query result
-            callback(null,dbresponse);
-        })
-        .on('end', function(){
-            logger.debug("DB END");
-        })	
+    cfg.datasources[indexOfDataSource].db.query(q.query, function (error, rows, fields) {
+    	if (error) {
+    		logger.debug(error);
+    		callback("Invalid query",error);
+    		return;
+    	}
+    	logger.debug(rows);
+    	callback(null,rows);
+    	return;
+    })
 }
 
