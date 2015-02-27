@@ -23,20 +23,15 @@ SOCKETBI.socket.on('dataresponse', function (data) {
 	console.log(data);
 	var evt = document.createEvent("Event");
 	evt.initEvent("SOCKETBI.dataresponse",true,true);
-	// custom param
 	evt.data = data;
-	// console.log(evt);
 	document.dispatchEvent(evt);
 });
 
 SOCKETBI.socket.on('dblist', function (data) {
-	// console.log(data);
 	SOCKETBI.dblist = data;
 	var evt = document.createEvent("Event");
 	evt.initEvent("SOCKETBI.dbList",true,true);
-	// custom param
 	evt.data = data;
-	// console.log(evt);
 	document.dispatchEvent(evt);
 });
 

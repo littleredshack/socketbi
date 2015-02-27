@@ -58,13 +58,15 @@ AUTHENTICATION
 
 	/********************************************
 	Handle data requests
+	Returns a dataresponse object containing
+	the originating queryid and the result
 	********************************************/
 	socket.on('datarequest', function (request) {
 		logger.debug('datarequest: '+JSON.stringify(request));
 		// If this session key is not valid then fail data response
 		if (sessions.activeSession(sessionStore,request.key) < 0) {
 			logger.warn('unauthorised data request from ' +socket.handshake.address);
-			socket.emit('dataresponse','failed');
+			socket.emit('dataresponse',{"queryid":request.data.queryid,"result":'failed'});
 			return;
 		}
 		// Check for illegal SQL statements and return immediately if there are any
@@ -72,17 +74,17 @@ AUTHENTICATION
 		var found = qx.match(/DELETE|INSERT|UPDATE/g); 
 		if( found ) {
 			logger.warn("Illegal query from " +socket.handshake.address);
-			socket.emit("dataresponse","Illegal query")
+			socket.emit("dataresponse",{"queryid":request.data.queryid,"result":"Illegal query"})
 			return;
 		}
 		// Run the query and send result on socket
 		connections.query(request.data, function(err, result) {
 			if(err) {
 				logger.debug(err);
-				socket.emit('dataresponse',err);
+				socket.emit('dataresponse',{"queryid":request.data.queryid,"result":"Invalid query"});
 				return;
 			}
-			socket.emit('dataresponse',result);
+			socket.emit('dataresponse',{"queryid":request.data.queryid,"result":result});
 		}); 
 	});
 

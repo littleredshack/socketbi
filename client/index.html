@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html>
+<head>
+<style>
+  #queryresults {background-color:lightblue}
+  #queryresults2 {background-color:lightgrey}
+</style>
+</head>
 <body>
 
 <h3>SOCKETBICLIENT</h3>
@@ -22,20 +28,13 @@ Query:</br>
 </br>
 </br>
 <div id="queryresults"></div>
+<div id="queryresults2"></div>
 
 <script src="socket.io.js"></script>
 <script src="socketbi.js"></script>
 <script src="client.js"></script>
 
 <script>
-myDataRequest = function () {
-	var q = document.getElementsByName('dataquery')[0].value;
-	SOCKETBI.datarequest ({
-		'dataSourceName': document.getElementsByName('dropdown')[0].value,
-		'query'			: q == '' ? 'select count(*) FROM DUAL' : q 
-	})
-}
-
 myLoginFunction = function () {
 	SOCKETBI.login({
 		'user'		: document.getElementsByName('username')[0].value,
@@ -58,11 +57,27 @@ myDBListHandler = function (e) {
 	})
 }
 
-myDataResponseHandler = function (e) {
-	console.log(e);
-	document.getElementById("queryresults").innerHTML = "Query result: " + "</br></br>" + JSON.stringify(e.data);
+myDataRequest = function () {
+	var q = document.getElementsByName('dataquery')[0].value;
+	SOCKETBI.datarequest ({
+		'dataSourceName': document.getElementsByName('dropdown')[0].value,
+		'queryid'		: 'queryresults',	// in this example we set the queryid to the id of the element where we want to display the result
+		'query'			: q == '' ? 'select count(*) FROM DUAL' : q 
+	})
 }
 
+myDataResponseHandler = function (e) {
+	console.log(e);
+	// You can use e.data.queryid to track which result belongs to which query if multiple queries are being sent
+	// In this example we use the target elementID as e.data.queryid so we know where to display the results
+	// But you can set the queryid in the originating data request to anything that works for your application
+	document.getElementById(e.data.queryid).innerHTML = "Query result: " + "</br></br>" + JSON.stringify(e.data.result);
+}
+
+/*************************************************************
+On document load 
+Add event listeners for SOCKETBI data events
+**************************************************************/
 document.addEventListener("DOMContentLoaded", function(event) { 
 	console.log("started");
 	document.addEventListener("SOCKETBI.dbList",myDBListHandler,false);
