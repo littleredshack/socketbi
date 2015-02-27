@@ -17,6 +17,7 @@
   			"name": "mysql1",
   			"type": "mysql",
   			"connection": {
+  				"connectionLimit" : 10,
   				"host": "localhost",
     			"user": "root",
     			"password": "password",
