@@ -65,7 +65,7 @@ exports.query = function query(q,callback) {
 	// Check if this datasource is already connected
 	if (cfg.datasources[indexOfDataSource].state != "connected") {
 		// if it's not connected then connect it and store the connection as this.'db' to use for making future db calls
-		cfg.datasources[indexOfDataSource].db = mysql.createConnection(cfg.datasources[indexOfDataSource].connection);
+		cfg.datasources[indexOfDataSource].db = mysql.createPool(cfg.datasources[indexOfDataSource].connection);
 		// TODO: Check that the connection was successful
 		// set the state of this connection to connected
 		cfg.datasources[indexOfDataSource].state = "connected";
