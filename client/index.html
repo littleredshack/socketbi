@@ -25,6 +25,11 @@ Query:</br>
 <textarea rows="4" cols="50" name="dataquery"></textarea>
 </br>
 <button onclick="myDataRequest()">Get data</button>
+Target DIV
+<select id="targetdiv" name="targetdiv">
+  <option value="queryresults">DIV 1</option>
+  <option value="queryresults2">DIV 2</option>
+</select>
 </br>
 </br>
 <div id="queryresults"></div>
@@ -61,7 +66,9 @@ myDataRequest = function () {
 	var q = document.getElementsByName('dataquery')[0].value;
 	SOCKETBI.datarequest ({
 		'dataSourceName': document.getElementsByName('dropdown')[0].value,
-		'queryid'		: 'queryresults',	// in this example we set the queryid to the id of the element where we want to display the result
+		// queryid: send the queryid in the request. The same queryid will be returned with the response
+		// In this example we set the queryid to the id of the element where we want to display the results of this query
+		'queryid'		: document.getElementById("targetdiv").value,	
 		'query'			: q == '' ? 'select count(*) FROM DUAL' : q 
 	})
 }
