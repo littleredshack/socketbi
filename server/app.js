@@ -58,8 +58,8 @@ AUTHENTICATION
 
 	/********************************************
 	Handle data requests
-	Returns a dataresponse object containing
-	the originating queryid and the result
+	Returns a dataresponse object to the socket 
+	containing the originating queryid and the result
 	********************************************/
 	socket.on('datarequest', function (request) {
 		logger.debug('datarequest: '+JSON.stringify(request));
@@ -69,23 +69,27 @@ AUTHENTICATION
 			socket.emit('dataresponse',{"queryid":request.data.queryid,"result":'failed'});
 			return;
 		}
-		// Check for illegal SQL statements and return immediately if there are any
-		var qx = request.data.query.toUpperCase();
-		var found = qx.match(/DELETE|INSERT|UPDATE/g); 
-		if( found ) {
-			logger.warn("Illegal query from " +socket.handshake.address);
-			socket.emit("dataresponse",{"queryid":request.data.queryid,"result":"Illegal query"})
-			return;
+		// check what type of datasource this query is accessing
+		var indexOfDataSource = cfg.datasources.map(function(e) { return e.name; }).indexOf(request.data.dataSourceName);
+		var targetDSType = cfg.datasources[indexOfDataSource].type;
+		logger.debug("targetDSType: " +targetDSType);
+		switch(targetDSType) {
+			case "mysql":
+				// Run the query and send result on socket
+				connections.mysql.query(request.data, function(err, result) {
+					if(err) {
+						logger.debug("Query error: " +result);
+						socket.emit('dataresponse',{"queryid":request.data.queryid,"result":result});
+						return;
+					}
+					socket.emit('dataresponse',{"queryid":request.data.queryid,"result":result});
+				}); 
+				break;
+			default:
+				logger.debug("Datasource config error");
+				socket.emit('dataresponse',{"queryid":request.data.queryid,"error":"Datasource config error","result":""});
+				break;
 		}
-		// Run the query and send result on socket
-		connections.query(request.data, function(err, result) {
-			if(err) {
-				logger.debug(err);
-				socket.emit('dataresponse',{"queryid":request.data.queryid,"result":"Invalid query"});
-				return;
-			}
-			socket.emit('dataresponse',{"queryid":request.data.queryid,"result":result});
-		}); 
 	});
 
 	socket.on('disconnect', function () { });

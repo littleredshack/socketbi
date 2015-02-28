@@ -2,7 +2,7 @@ var fs    = require('fs');
 var mysql = require('mysql');
 // cfg object containing config of all datasources. 
 // Read from file 
-var cfg   = {};
+global.cfg   = {};
 
 /***************************************************
 PRIVATE FUNCTION: connections.readConfig
@@ -45,23 +45,27 @@ exports.dblist = function dblist(callback) {
 }
 
 
-/*************************************************
-CONNECTIONS.QUERY
-The main database query routine
-Expects to receive an object: 
-{"dataSourceName":"xxx":"query":"xxxx"}
-Returns a callback with
-an error code (or null) and a dbresponse object
-**************************************************/
-exports.query = function query(q,callback) {
-	logger.debug("connections.query: " +JSON.stringify(q));
-	// Get the index of this datasource so that can use it later
-	var indexOfDataSource = cfg.datasources.map(function(e) { return e.name; }).indexOf(q.dataSourceName) ;
-	// Check that we have a valid connection config for this connection
-	if(!cfg.datasources[indexOfDataSource].connection) { 
-		callback("Invalid connection settings") ;
+/****************************************************************************************
+MYSQL QUERY HANDLER
+The main mysql database query routine
+Takes a query object e.g.
+{"dataSourceName":"mysql1","queryid":"queryresults2","query":"select count(*) FROM DUAL"}
+
+Returns a callback with an error code (or null) and a dbresponse object
+****************************************************************************************/
+exports.mysql = {};
+exports.mysql.query = function query(q,callback) {
+	logger.debug("connections.mysql.query: " +JSON.stringify(q));
+	// Check for illegal SQL statements and return immediately if there are any
+	var qx = q.query.toUpperCase();
+	var found = qx.match(/DELETE|INSERT|UPDATE/g); 
+	if( found ) {
+		callback("Error","Illegal query") ;
+		//socket.emit("dataresponse",{"queryid":request.data.queryid,"result":"Illegal query"})
 		return;
 	}
+	// Get the index of this datasource so that can use it to get config settings
+	var indexOfDataSource = cfg.datasources.map(function(e) { return e.name; }).indexOf(q.dataSourceName) ;
 	// Check if this datasource is already connected
 	if (cfg.datasources[indexOfDataSource].state != "connected") {
 		// if it's not connected then connect it and store the connection as this.'db' to use for making future db calls
@@ -70,6 +74,13 @@ exports.query = function query(q,callback) {
 		// set the state of this connection to connected
 		cfg.datasources[indexOfDataSource].state = "connected";
 	}
+	// Check that we have a valid connection config for this connection
+	if(!cfg.datasources[indexOfDataSource].connection) { 
+		logger.debug("Missing connection settings");
+		callback("Error","Missing connection settings") ;
+		return;
+	}
+	// Run the query
     cfg.datasources[indexOfDataSource].db.query(q.query, function (error, rows, fields) {
     	if (error) {
     		logger.debug(error);
