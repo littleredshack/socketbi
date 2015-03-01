@@ -15,7 +15,7 @@ logger.info("SocketBI server listening on port " +nconf.get('app:port'));
 /*************************************************
 Receive initial connection request and open socket
 Note: No authentication required at this point
-TODO: Also not bothering to clean unused sockets yet
+TODO: Clean unused sockets
 *************************************************/
 io.on('connection', function (socket) {
 	logger.debug('client connection');

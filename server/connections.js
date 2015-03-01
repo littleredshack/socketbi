@@ -84,7 +84,7 @@ exports.mysql.query = function query(q,callback) {
     cfg.datasources[indexOfDataSource].db.query(q.query, function (error, rows, fields) {
     	if (error) {
     		logger.debug(error);
-    		callback("Invalid query",error);
+    		callback(error,"Invalid query");
     		return;
     	}
     	logger.debug(rows);

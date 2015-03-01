@@ -43,9 +43,9 @@ SOCKETBI.login = function (creds) {
 
 SOCKETBI.datarequest = function(request) {
 	console.log(request);
-	// Check that queryid is a string
+	// Check that queryid is a string or a number
 	if (typeof request.queryid != "string" && typeof request.queryid != "number") {
-		console.log("queryid is not a string");
+		console.log("queryid must be a string or a number");
 		return;
 	}
 	SOCKETBI.socket.emit('datarequest', {'key':sessionStorage.sessionKey,'data':request});

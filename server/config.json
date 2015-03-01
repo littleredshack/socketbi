@@ -35,5 +35,13 @@
   		{
   			"name": "mysql2"
   		}
-  	]
+  	],
+    "preparedQueries": [
+      {"queryName": "","dataSourceName":"","query":"","permissions":[]}
+    ],
+    "pollingQueries": [
+      {"queryName": "","dataSourceName":"","query":"", "frequency":0,"permissions":[]}
+    ],
+    "dataListeners": [
+    ]
 }
