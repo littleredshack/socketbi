@@ -1,0 +1,10 @@
+{
+	"name" : "panelApp",
+	"version" : "0.0.1",
+	"devDependencies": {
+		"grunt" : "latest",
+		"grunt-contrib-concat" : "latest",
+		"grunt-contrib-copy" : "latest",
+		"grunt-targethtml" : "latest"
+	}
+}

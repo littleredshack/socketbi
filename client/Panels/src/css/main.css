@@ -1,0 +1,53 @@
+/*
+* {
+  border-radius: 0 !important;
+}
+*/
+.btn {
+	height: 40px;
+}
+html, body {
+	height: 100%;
+	margin: 0px;
+}
+.panel {
+	width: 50%;
+	position:absolute;
+	top:100px;
+	left:0px;
+}
+.panel-body {
+	height: 150px;
+}
+.panel-footer{
+	position: absolute;
+    width:100%;
+    bottom:0;
+}
+#container {
+	height: 600px;
+	width:100%;
+	border: 2px;
+	border-color: black;
+}
+button {
+	width: 100px;
+}
+/* 
+When jquery sets an element to disable draggable it also changes the opacity
+So this keeps the panel displaying properly
+Used for disabling draggable on menu panel when it is set to docked mode
+*/
+div.ui-state-disabled.ui-draggable-disabled {
+	opacity: 1;
+}
+.menu {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 55px;
+	font-size: small;
+	min-width: 135px;
+	min-height: 50px;
+}

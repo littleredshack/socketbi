@@ -1,0 +1,50 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/foundation/5.0.0/css/foundation.min.css"> 
+	<style>
+        .ng-pageslide {
+            background: #eee;
+        }
+    </style>
+
+
+</head>
+<link rel="stylesheet" href="css/main.css">
+<body ng-app="contentEditor">
+            <div id="controller-demo" ng-controller="pageslideCtrl">
+                <h3>Opening / Closing within a controller</h3>
+                <p>Check to open: <input type="checkbox" ng-model="checked" ></p>
+                <pageslide ps-open="checked" ps-target="#demo-ctrl"></pageslide>
+                <div style="padding:20px" id="demo-ctrl">
+                    <h2>Good Pageslide</h2>
+                    <p>Put here whatever you want</p>
+                </div>
+            </div>
+
+            <div ng-controller="pageslideCtrl">
+                <h3>As an element, without ps-target</h3>
+                <p>Check to open: <input type="checkbox" ng-model="checked" ></p> 
+                <pageslide ps-open="checked" >
+                <div style="padding:20px">
+                    <h2>Cool Pageslide</h2>
+                    <p>Put here whatever you want</p>
+                </div>
+                </pageslide> 
+            </div>
+            
+	<a  class="large button" pageslide  ps-side="right" ps-speed="0.5" href="#demo-right">Open Demo</a>
+
+            <div style="padding:20px" id="demo-right">
+                <h2>Hello Pageslide</h2>
+                <button ce-box-creator>New box</button>
+                <a id="demo-right-close"i class="button" >Close</a>
+            </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+    <script src="libs/ng-pageslide-master/src/angular-pageslide-directive.js"></script>
+    <script src="js/app.js"></script>
+
+</body>

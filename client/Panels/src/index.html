@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://code.angularjs.org/1.2.1/angular.min.js" type="text/javascript"></script>
+    <script src="http://code.angularjs.org/1.2.1/angular-sanitize.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css">
+    <!--
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/css/foundation.min.css">
+    -->
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js"></script>
+  </head>
+  <body>
+
+    <div ng-controller="myCtrl">
+
+      <!--
+        <div mypanel my-attribute="someObject" id='0' on-resize-stop="someFunction()">
+            Hello, world !<br />
+            I am resizable :) <br/>{{someObject[0].position}}<br/>{{someObject[0].size}}
+        </div>
+
+        <div mypanel my-attribute="someObject" id='1' on-resize-stop="someFunction()">
+            Hello, world !<br />
+            I am resizable :) <br/>{{someObject[1].position}}<br/>{{someObject[1].size}}
+        </div>
+-->
+
+<div id="container">
+        <div mypanel my-attribute="someObject" id='2' on-resize-stop="someFunction()" class="menu animated slideInDown">
+          <div class="panel-body">
+            <button>Login</button>
+            <button>Navigator</button>
+            <button>Configurator</button>
+            <button>Add Panel</button>
+            <button>Save Layout</button>
+            <button ng-controller="MenuDockCtrl" ng-click="toggleCustom()">{{docked?'Dock Menu':'Float Menu'}}</button>
+         </div>
+        </div>
+
+          <div mypanel my-attribute="someObject" id='3' on-resize-stop="someFunction()">
+          <div class="panel-heading">
+            <h3 class="panel-title">Panel title</h3>
+          </div>
+          <div class="panel-body">
+            Panel content
+          </div>
+          <div class="panel-footer">{{someObject[3].position}}<br/>{{someObject[3].size}}</div>
+        </div>
+
+    </div>
+</div>
+
+
+  </body>
+</html>
