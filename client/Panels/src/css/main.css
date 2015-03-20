@@ -14,7 +14,7 @@ html, body {
 	width: 50%;
 	position:absolute;
 	top:100px;
-	left:0px;
+	left:200px;
 }
 .panel-body {
 	height: 150px;
@@ -48,6 +48,25 @@ div.ui-state-disabled.ui-draggable-disabled {
 	width: 100%;
 	height: 55px;
 	font-size: small;
-	min-width: 135px;
+	min-width: 125px;
 	min-height: 50px;
+	margin-bottom: 0px;
+	background-color: mediumvioletred;
+	color: whitesmoke;
 }
+.menu .panel-body {
+	height: 55px;
+	background-color: mediumvioletred;
+	color: whitesmoke;
+	padding: 17px;
+}
+.menu-docked {
+  border-radius: 0 !important;
+}
+span {
+	display: inline-block; 
+	width: 80px;
+	cursor: pointer;
+	text-align:center;
+}
+ span:hover{ font-weight:bold }
