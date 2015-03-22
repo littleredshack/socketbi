@@ -1,0 +1,15 @@
+<div default-panel id='menu' panel-configs="panelConfigs" can-resize='true' can-drag='true' class="menu animated slideInDown">
+  <div class="panel-body">
+    <span>Login</span>
+    <span>|</span>
+    <span show-config-button ng-click="showNavigator=!showNavigator">{{showNavigator?'Hide':'Show'}} Nav</span>
+    <span>|</span>
+    <span show-config-button ng-click="showConfig=!showConfig">{{showConfig?'Hide':'Show'}} Config</span>
+    <span>|</span>
+    <span add-panel-button>Add Panel</span>
+    <span>|</span>
+    <span>Save Layout</span>
+    <span>|</span>
+    <span dock-button ng-click="docked=!docked">{{docked?'Dock Menu':'Float Menu'}}</span>
+ </div>
+</div>

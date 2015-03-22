@@ -15,62 +15,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/css/foundation.min.css">
     -->
     <link rel="stylesheet" href="css/main.css">
-    <script src="js/main.js"></script>
-    <script src="js/directives/dockButton.js"></script>
-    <script src="js/directives/workspace.js"></script>
-    <script src="js/directives/addPanelButton.js"></script>
+
   </head>
   <body>
 
-    <div ng-controller="MyController">
+    <div ng-controller="MainController">
 
-      <div default-panel id="config" class="config" panel-configs="panelConfigs" can-resize='true' can-drag='true' ng-show='showConfig'>
-        <div class="panel-body">
-          Config: {{showConfig}}
-          <hr>
-          {{currentPanelID}}
-          </br>
-          {{panelConfigs[currentPanelID].offset}}
-        </div>
-      </div>
-
-      <div default-panel id="navigator" class="navigator" panel-configs="panelConfigs" can-resize='true' can-drag='true' ng-show='showNavigator'>
-        <div class="panel-body">
-          Navigator: {{showNavigator}}
-        </div>
-      </div>
-
-        <div default-panel id='menu' panel-configs="panelConfigs" can-resize='true' can-drag='true' class="menu animated slideInDown">
-          <div class="panel-body">
-            <span>Login</span>
-            <span>|</span>
-            <span show-config-button ng-click="showNavigator=!showNavigator">{{showNavigator?'Hide':'Show'}} Nav</span>
-            <span>|</span>
-            <span show-config-button ng-click="showConfig=!showConfig">{{showConfig?'Hide':'Show'}} Config</span>
-            <span>|</span>
-            <span add-panel-button>Add Panel</span>
-            <span>|</span>
-            <span>Save Layout</span>
-            <span>|</span>
-            <span dock-button ng-click="docked=!docked">{{docked?'Dock Menu':'Float Menu'}}</span>
-         </div>
-        </div>
-<!--
-          <div default-panel update-panel-config panel-configs="panelConfigs" can-resize='true' can-drag='true' id='3' on-resize-stop="someFunction()" style="left:340px;">
-          <div class="panel-heading">
-            <h3 class="panel-title">Panel title</h3>
-          </div>
-          <div class="panel-body">
-            Panel content
-          </div>
-          <div class="panel-footer">{{panelConfigs[3].offset}}<br/>{{panelConfigs[3].size}}</div>
-        </div>
--->
-
-<workspace></workspace>
+      <div configurator></div>
+      <div navigator></div>
+      <div menu></div>
+      <workspace></workspace>
   
     </div> <!-- End myApp Controller -->
 
+    <script src="js/main.js"></script>
+    <script src="js/directives/defaultPanel.js"></script>
+
+    <script src="js/directives/menu.js"></script>
+    <script src="js/directives/navigator.js"></script>
+    <script src="js/directives/configurator.js"></script>
+    <script src="js/directives/dockButton.js"></script>
+    <script src="js/directives/workspace.js"></script>
+    <script src="js/directives/addPanelButton.js"></script>
+    <script src="js/directives/updatePanelConfig.js"></script>
+
+    <script src="js/controllers/MainController.js"></script>
 
   </body>
 </html>
