@@ -8,23 +8,23 @@
   <tabset>
     <tab heading="Style">
     </p>
-    Position and Size 
+    Position and Size
     </p>
-    <span>Top: <a href="#" editable-number="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.top" buttons="no">
+    <span>Top: <a href="#" editable-number="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.top" e-min="0" buttons="no">
       {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.top | number : 2 || 0 }} </a>
     </span>
     <span>Left: <a href="#" editable-number="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.left" e-min="0" buttons="no">
-      {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.left || 0 }} </a>
+      {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.left | number : 2 || 0 }} </a>
     </span>
     </br>
     <span>Height: <a href="#" editable-number="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.height" e-min="0" buttons="no">
       {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.height | number : 2  || 0 }} </a>
     </span>
     <span>Width: <a href="#" editable-number="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.width" e-min="0" buttons="no">
-      {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.width || 0 }} </a>
+      {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.width | number  :2 || 0 }} </a>
     </span>
   <hr> 
-  <input type="checkbox" checked ng-click="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].hidepanelheading = !Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].hidepanelheading"> Panel Heading</input>
+  <input type="checkbox" ng-checked="getShowPanelHeadingSetting()" ng-model="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].showpanelheading"> Panel Heading</input>
   </br></br>Panel Body </br>
   <div>Background: <a href="#" editable-color="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.backgroundColor">{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.backgroundColor || 'white' }}</a></div>
   <div>Font Color: <a href="#" editable-color="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.color">{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.color || 'black' }}</a></div>

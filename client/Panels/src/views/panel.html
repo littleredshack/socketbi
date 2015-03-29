@@ -3,9 +3,9 @@
 	the NEXTINDEX gets replaced 
 	by the next available ID  
 -->
-<div default-panel update-panel-config panel-configs="Config" can-resize='true' can-drag='true' id='NEXTINDEX' on-resize-stop="someFunction()" class="panel panel-in-workspace" style="position:absolute" ng-style="applyStyle(NEXTINDEX)">
+<div default-panel update-panel-config panel-configs="Config" can-resize='true' can-drag='true' id='NEXTINDEX' class="panel panel-default panel-in-workspace" style="position:absolute" ng-style="applyStyle(NEXTINDEX)">
 
-<div class="panel-heading" ng-hide="Config.Workspaces[0].Panels[NEXTINDEX].hidepanelheading">
+<div class="panel-heading" ng-show="Config.Workspaces[0].Panels[NEXTINDEX].showpanelheading">
 <h3 class="panel-title">
 	<span><a href="#" editable-text="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].panelTitle" buttons="no">
       {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].panelTitle || 'Panel Title' }} </a>

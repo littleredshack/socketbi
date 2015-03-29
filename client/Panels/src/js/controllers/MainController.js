@@ -1,31 +1,21 @@
 app.controller('MainController', function ($http, $scope) {
 
-  $scope.someFunction = function () {
-      //console.log('Resized !');
-  };
-
   $scope.currentWorkspaceIndex = 0;
+  $scope.style={};
+
+  $scope.Config = {
+    Workspaces: [
+      {
+        name: 'Workspace 1',
+        Panels : [
+        ]
+      }
+    ]
+  };
 
   $scope.nextIndex = function(){
     return $scope.Config.Workspaces[$scope.currentWorkspaceIndex].Panels.length;
   };
-
-  $scope.setCurrentPanelValue = function (variable, value){
-  	$scope.Config.Workspaces[$scope.currentWorkspaceIndex].Panels[$scope.currentPanelIndex][variable] = value;
-  	// $scope.apply();
-  };
-
-  $scope.Config = {
-  	Workspaces: [
-  		{
-  			name: 'Workspace 1',
-  			Panels : [
-  			]
-  		}
-  	]
-  };
-
-  $scope.style={};
 
 /*
 Reads the style object for a specified panel
@@ -41,6 +31,10 @@ Returns a style object used by default Panels in their ng-style
     return thisPanel.style ;
   }
 
+/*
+Meant to be used for advanced config in configurator
+Will probably disable that functionality
+*/
   $scope.newStyle = function(ns) {
     try {
       var obj=JSON.parse(ns);
@@ -53,13 +47,15 @@ Returns a style object used by default Panels in their ng-style
     
     $scope.style = obj;
     $scope.setCurrentPanelValue('style',$scope.style);
-    // TODO: Get position of current Panel and update value in Config
-    // $scope.Config.Workspaces[$scope.currentWorkspaceIndex].Panels[$scope.currentPanelIndex].position.top = angular.element('#'+$scope.currentPanelID)[0].offsetTop;
-    // $scope.Config.Workspaces[$scope.currentWorkspaceIndex].Panels[$scope.currentPanelIndex].position.left = angular.element('#'+$scope.currentPanelID)[0].offsetLeft;
-
-    //console.log(angular.element('#'+$scope.currentPanelID)[0].offsetTop);
     return $scope.style;
   };
+
+  $scope.getShowPanelHeadingSetting = function() {
+    //console.log($scope.Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].hidepanelheading);
+    if ( typeof $scope.Config.Workspaces[$scope.currentWorkspaceIndex].Panels[$scope.currentPanelIndex] === 'undefined') return;
+    return $scope.Config.Workspaces[$scope.currentWorkspaceIndex].Panels[$scope.currentPanelIndex].showpanelheading;
+  }
+
 
 });
 
