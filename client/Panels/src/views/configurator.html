@@ -1,11 +1,38 @@
-<div default-panel id="config" class="config" panel-configs="panelConfigs" can-resize='true' can-drag='true' ng-show='showConfig'>
+<div control-panel id="configurator" class="config" panel-configs="Config" can-resize='true' can-drag='true' ng-show='showConfig'>
   <div class="panel-heading">
-      <h4 class="panel-title">Configuration</h4>
+      <h4 class="panel-title">Panel ID: {{currentPanelID}}</h4>
     </div>
 
   <div class="panel-body">
-    {{currentPanelID}}
+    
+  <tabset>
+    <tab heading="Style">
+    </p>
+    Position and Size 
+    </p>
+    <span>Top: <a href="#" editable-number="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.top" buttons="no">
+      {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.top | number : 2 || 0 }} </a>
+    </span>
+    <span>Left: <a href="#" editable-number="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.left" e-min="0" buttons="no">
+      {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.left || 0 }} </a>
+    </span>
     </br>
-    {{panelConfigs[currentPanelID].offset}}
-  </div>
+    <span>Height: <a href="#" editable-number="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.height" e-min="0" buttons="no">
+      {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.height | number : 2  || 0 }} </a>
+    </span>
+    <span>Width: <a href="#" editable-number="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.width" e-min="0" buttons="no">
+      {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.width || 0 }} </a>
+    </span>
+  <hr> 
+  <input type="checkbox" checked ng-click="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].hidepanelheading = !Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].hidepanelheading"> Panel Heading</input>
+  </br></br>Panel Body </br>
+  <div>Background: <a href="#" editable-color="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.backgroundColor">{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.backgroundColor || 'white' }}</a></div>
+  <div>Font Color: <a href="#" editable-color="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.color">{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.color || 'black' }}</a></div>
+  <div>Font Size: <a href="#" editable-text="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.fontSize" buttons='no'>{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.fontSize || '0px'}}</a></div>
+  <div>Font Family: <a href="#" editable-text="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.fontFamily" buttons='no'>{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.fontFamily || 'Arial, Helvetica, sans-serif'}}</a></div>
+    </tab>
+    <tab heading="Content">
+    </tab>
+  </tabset>
+  </div> 
 </div>

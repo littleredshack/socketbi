@@ -1,9 +1,23 @@
-<div default-panel update-panel-config panel-configs="panelConfigs" can-resize='true' can-drag='true' id='NEXTINDEX' on-resize-stop="someFunction()" class="panel-in-workspace">
-<div class="panel-heading">
-<h3 class="panel-title">Panel title</h3>
+<!--
+	On creation of a new panel (in the directive addPanelButton.js) 
+	the NEXTINDEX gets replaced 
+	by the next available ID  
+-->
+<div default-panel update-panel-config panel-configs="Config" can-resize='true' can-drag='true' id='NEXTINDEX' on-resize-stop="someFunction()" class="panel panel-in-workspace" style="position:absolute" ng-style="applyStyle(NEXTINDEX)">
+
+<div class="panel-heading" ng-hide="Config.Workspaces[0].Panels[NEXTINDEX].hidepanelheading">
+<h3 class="panel-title">
+	<span><a href="#" editable-text="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].panelTitle" buttons="no">
+      {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].panelTitle || 'Panel Title' }} </a>
+    </span>
+
+</h3>
 </div>
+
 <div class="panel-body">
 Panel content
 </div>
+<!--
 <div class="panel-footer">{{panelConfigs[NEXTINDEX].offset}}<br/>{{panelConfigs[NEXTINDEX].size}}</div>
+-->
 </div>

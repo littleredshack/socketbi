@@ -7,7 +7,6 @@
 Disable scrollbars
 http://stackoverflow.com/questions/242608/disable-browsers-vertical-and-horizontal-scrollbars
 **/
-
 html {
      -ms-overflow-style: none;
 }
@@ -15,27 +14,28 @@ html {
     display: none;
 }
 
-.btn {
+#menu > .btn {
 	height: 40px;
+	width: 100px;
 }
 html, body {
 	height: 100%;
 	margin: 0px;
 }
-.panel {
-	width: 50%;
-	top:100px;
+#workspace>.panel {
+	/*Initial settings for a new panel*/
+	width: 450px;
+	height: 150px;
+	top: 20px;
+	left: 100px;
 }
 .panel-body {
-	
+	padding: 10px;	
 }
 .panel-footer{
 	position: absolute;
     width:100%;
     bottom:0;
-}
-button {
-	width: 100px;
 }
 /* 
 When jquery sets an element to disable draggable it also changes the opacity
@@ -55,34 +55,49 @@ div.ui-state-disabled.ui-draggable-disabled {
 	min-width: 108px;
 	min-height: 40px;
 	margin-bottom: 0px;
+	padding-top: 10px;
 	background-color: mediumvioletred;
 	color: whitesmoke;
 	z-index:100;
 }
 .menu .panel-body {
-	height: 40px;
+	height: 34px;
 	background-color: mediumvioletred;
 	color: whitesmoke;
-	padding: 10px;
+	padding: 2px;
 }
 .docked {
   border-radius: 0 !important;
 }
-span {
+#menu span {
 	display: inline-block; 
 	width: 80px;
 	cursor: pointer;
 	text-align:center;
 }
- span:hover { 
+ #menu span:hover { 
  	font-weight:bold 
 }
 /***
-Config Panel
+Control Panels
 **/
-.config {
-	position: absolute;
+#configurator {
+	position: relative !important;
 	top: 56px;
+	left: 10px;
+	width: 250px;
+	min-width: 250px;
+	min-height: 450px;
+	background-color: #f5f5f5;
+	border: 1px solid;
+	border-color: #e3e3e3;
+	z-index: 100;
+}
+#configurator > panel-body {
+	padding: 5px;
+}
+.navigator {
+	top: 50%;
 	right: 10px;
 	height: 50%;
 	width: 250px;
@@ -93,25 +108,18 @@ Config Panel
 	border-color: #e3e3e3;
 	z-index: 100;
 }
-.navigator {
-	position: absolute;
-	top: 55%;
-	right: 10px;
-	height: 40%;
-	width: 250px;
-	max-height: calc(100% - 56px);
-	min-width: 150px;
-	background-color: #f5f5f5;
-	border: 1px solid;
-	border-color: #e3e3e3;
-	z-index: 100;
-}
 #workspace {
-	left: 49px;
+	position: absolute;
+	left: 270px;
 	top:56px;
 	height: 611px;
 	width: 1031px;
 	border: 1px solid;
 	border-color: lightgray;
 	z-index: 0;
+	overflow: auto;
+	padding: 10px;
+}
+.checkbox {
+	cursor: pointer;
 }

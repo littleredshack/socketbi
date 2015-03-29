@@ -5,17 +5,38 @@ app.directive('workspace', function ($compile) {
     replace: true,
     link: function (scope, elem, attrs) {
       elem.draggable({
-        //containment: 'body', 
         drag: function(evt,ui) {
-          // scope.panelConfigs[scope.id].offset = ui.offset;
-          // scope.apply();
         }
       });
+      var childPanels = [];
       elem.resizable({
+        start: function (evt, ui){
+          if (scope.Config.Workspaces[0].responsive) {
+            childPanels = [];
+            angular.forEach(angular.element('#workspace').children('.panel'), function(value) {
+              var id = value.id;
+              var originalHeight = angular.element("#"+id)[0].offsetHeight ;
+              var originalWidth = angular.element("#"+id)[0].offsetWidth ;
+              var originalTop = angular.element("#"+id)[0].offsetTop ;
+              var originalLeft = angular.element("#"+id)[0].offsetLeft ;
+              var obj = {'id':id,'originalHeight':originalHeight, 'originalWidth':originalWidth, 'originalTop':originalTop, 'originalLeft':originalLeft};
+              childPanels.push(obj);
+            });
+          }
+        },
         resize: function (evt, ui) {
-          // scope.panelConfigs[scope.id].size = scope.panelConfigs[scope.id].size || {};
-          // scope.panelConfigs[scope.id].size = ui.size;
-          //scope.$apply();
+          if (scope.Config.Workspaces[0].responsive) {
+            var resizeRatioHeight = ui.size.height/ui.originalSize.height;
+            var resizeRatioWidth = ui.size.width/ui.originalSize.width;
+            
+            angular.forEach(childPanels, function(value) {
+              scope.Config.Workspaces[0].Panels[value.id].style.height = value.originalHeight * resizeRatioHeight;
+              scope.Config.Workspaces[0].Panels[value.id].style.width = value.originalWidth * resizeRatioWidth;
+              scope.Config.Workspaces[0].Panels[value.id].style.top = value.originalTop * resizeRatioHeight;
+              scope.Config.Workspaces[0].Panels[value.id].style.left = value.originalLeft * resizeRatioWidth;
+              scope.$apply();
+            });
+          }
         },
         stop: function (evt, ui) {
             if (scope.callback) { scope.callback(); }
