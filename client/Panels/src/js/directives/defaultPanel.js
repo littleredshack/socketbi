@@ -29,6 +29,7 @@ app.directive('defaultPanel', function () {
       if (attrs.canResize === 'true') {
         elem.resizable({
           autoHide: true,
+          containment: 'parent',
           resize: function (evt, ui) {
             scope.Config.Workspaces[scope.currentWorkspaceIndex].Panels[scope.currentPanelIndex].style = scope.Config.Workspaces[scope.currentWorkspaceIndex].Panels[scope.currentPanelIndex].style || {};
             scope.Config.Workspaces[scope.currentWorkspaceIndex].Panels[scope.currentPanelIndex].style.height = ui.size.height;

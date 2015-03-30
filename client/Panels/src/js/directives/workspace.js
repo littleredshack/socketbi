@@ -11,6 +11,7 @@ app.directive('workspace', function ($compile) {
       var childPanels = [];
       elem.resizable({
         start: function (evt, ui){
+          if (scope.Config.Workspaces[scope.currentWorkspaceIndex].responsive) {
             childPanels = [];
             angular.forEach(angular.element('#workspace').children('.panel'), function(value) {
               var id = value.id;
@@ -24,10 +25,15 @@ app.directive('workspace', function ($compile) {
           }
         },
         resize: function (evt, ui) {
+          if (scope.Config.Workspaces[scope.currentWorkspaceIndex].responsive) {
             var resizeRatioHeight = ui.size.height/ui.originalSize.height;
             var resizeRatioWidth = ui.size.width/ui.originalSize.width;
             
             angular.forEach(childPanels, function(value) {
+              scope.Config.Workspaces[scope.currentWorkspaceIndex].Panels[value.id].style.height = value.originalHeight * resizeRatioHeight;
+              scope.Config.Workspaces[scope.currentWorkspaceIndex].Panels[value.id].style.width = value.originalWidth * resizeRatioWidth;
+              scope.Config.Workspaces[scope.currentWorkspaceIndex].Panels[value.id].style.top = value.originalTop * resizeRatioHeight;
+              scope.Config.Workspaces[scope.currentWorkspaceIndex].Panels[value.id].style.left = value.originalLeft * resizeRatioWidth;
               scope.$apply();
             });
           }

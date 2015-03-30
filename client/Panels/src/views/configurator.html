@@ -24,7 +24,7 @@
       {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.width | number  :2 || 0 }} </a>
     </span>
   <hr> 
-  <input type="checkbox" ng-checked="getShowPanelHeadingSetting()" ng-model="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].showpanelheading"> Panel Heading</input>
+  <input type="checkbox" ng-checked="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].showpanelheading" ng-model="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].showpanelheading"> Panel Heading</input>
   </br></br>Panel Body </br>
   <div>Background: <a href="#" editable-color="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.backgroundColor">{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.backgroundColor || 'white' }}</a></div>
   <div>Font Color: <a href="#" editable-color="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.color">{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.color || 'black' }}</a></div>

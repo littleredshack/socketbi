@@ -39,8 +39,8 @@ html, body {
 }
 /* 
 When jquery sets an element to disable draggable it also changes the opacity
-So this keeps the panel displaying properly
-Used for disabling draggable on menu panel when it is set to docked mode
+So this keeps the panel displaying properly after dragging is disabled
+e.g. Necessary on menu panel when it is set to docked mode
 */
 div.ui-state-disabled.ui-draggable-disabled {
 	opacity: 1;
