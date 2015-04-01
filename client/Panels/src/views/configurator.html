@@ -1,6 +1,6 @@
 <div control-panel id="configurator" class="config" panel-configs="Config" can-resize='true' can-drag='true' ng-show='showConfig'>
   <div class="panel-heading">
-      <h4 class="panel-title">Panel ID: {{currentPanelID}}</h4>
+      <h4 class="panel-title">Panel: {{currentPanelID || 'None selected'}} </h4>
     </div>
 
   <div class="panel-body">
@@ -26,7 +26,13 @@
   <hr> 
   <input type="checkbox" ng-checked="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].showpanelheading" ng-model="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].showpanelheading"> Panel Heading</input>
   </br></br>Panel Body </br>
-  <div>Background: <a href="#" editable-color="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.backgroundColor">{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.backgroundColor || 'white' }}</a></div>
+  <div>Panel Title: <a href='#' editable-text="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].panelTitle" buttons="no">{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].panelTitle || 'Panel Title'}}</a></div>
+
+  <div>Background:  
+    <a href='#' editable-text="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.backgroundColor" buttons="no">{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.backgroundColor || 'white'}}</a>
+  <a colorpicker ng-model="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.backgroundColor" colorpicker-close-on-select><i class="fa fa-eyedropper"></i></a>
+  </div>
+
   <div>Font Color: <a href="#" editable-color="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.color">{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.color || 'black' }}</a></div>
   <div>Font Size: <a href="#" editable-text="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.fontSize" buttons='no'>{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.fontSize || '0px'}}</a></div>
   <div>Font Family: <a href="#" editable-text="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.fontFamily" buttons='no'>{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.fontFamily || 'Arial, Helvetica, sans-serif'}}</a></div>

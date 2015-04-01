@@ -1,4 +1,4 @@
-var app = angular.module('LRS.socketbi.client', ['ui.bootstrap','xeditable']);
+var app = angular.module('LRS.socketbi.client', ['ui.bootstrap','xeditable','colorpicker.module']);
 
 app.run(function(editableOptions, editableThemes) {
   editableThemes.bs3.inputClass = 'input-xs';

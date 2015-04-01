@@ -7,6 +7,7 @@ app.directive('defaultPanel', function () {
       
       scope.Config.Workspaces[0].Panels[p].id = attrs.id;
       scope.Config.Workspaces[0].Panels[p].style = {};
+      scope.Config.Workspaces[0].Panels[p].panelTitle = 'Panel Title';
       scope.Config.Workspaces[0].Panels[p].showpanelheading = true;
 
       // quirky thing with jQuery resize-handles
