@@ -1,5 +1,13 @@
 app.controller('MainController', function ($http, $scope) {
 
+// Array Remove - By John Resig (MIT Licensed)
+// http://ejohn.org/blog/javascript-array-remove/
+var removeArrayItem = function(array, from, to) {
+  var rest = array.slice((to || from) + 1 || array.length);
+  array.length = from < 0 ? array.length + from : from;
+  return array.push.apply(array, rest);
+};
+
   $scope.currentWorkspaceIndex = 0;
   $scope.style={};
 
@@ -21,8 +29,10 @@ app.controller('MainController', function ($http, $scope) {
 Reads the style object for a specified panel
 Returns a style object used by default Panels in their ng-style
 */
-  $scope.applyStyle = function(panelindex) {
+  $scope.applyStyle = function(panelID) {
     var thisPanel = {};
+
+    var panelindex = $scope.Config.Workspaces[0].Panels.map(function(e) { return e.id; }).indexOf(panelID);    
 
     if (typeof $scope.Config.Workspaces[$scope.currentWorkspaceIndex].Panels[panelindex] === 'undefined') 
       return
@@ -50,12 +60,25 @@ Will probably disable that functionality
     return $scope.style;
   };
 
-  $scope.getShowPanelHeadingSetting = function() {
-    //console.log($scope.Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].hidepanelheading);
-    if ( typeof $scope.Config.Workspaces[$scope.currentWorkspaceIndex].Panels[$scope.currentPanelIndex] === 'undefined') return;
-    return $scope.Config.Workspaces[$scope.currentWorkspaceIndex].Panels[$scope.currentPanelIndex].showpanelheading;
+  $scope.deleteCurrentPanel = function () {
+    var pId = $scope.Config.Workspaces[$scope.currentWorkspaceIndex].Panels[$scope.currentPanelIndex].id;
+    angular.element("#"+pId).remove();
+    removeArrayItem($scope.Config.Workspaces[$scope.currentWorkspaceIndex].Panels, $scope.currentPanelIndex);
+    $scope.currentPanelID = null;
+    $scope.currentPanelIndex = null;
   }
 
+  $scope.getPanelTitle = function(panelID) {
+    var panelindex = $scope.Config.Workspaces[0].Panels.map(function(e) { return e.id; }).indexOf(panelID);    
+    if (typeof panelindex === 'undefined' || panelindex < 0) return;
+    return $scope.Config.Workspaces[0].Panels[panelindex].panelTitle;
+  }
+
+  $scope.getPanelShowHeading = function(panelID) {
+    var panelindex = $scope.Config.Workspaces[0].Panels.map(function(e) { return e.id; }).indexOf(panelID);          
+    if (typeof panelindex === 'undefined' || panelindex < 0) return;
+    return $scope.Config.Workspaces[0].Panels[panelindex].showpanelheading;
+  }
 
 });
 

@@ -1,13 +1,13 @@
 <!--
 	On creation of a new panel (in the directive addPanelButton.js) 
 	the NEXTINDEX gets replaced 
-	by the next available ID  
+	by a random ID  
 -->
-<div default-panel update-panel-config panel-configs="Config" can-resize='true' can-drag='true' id='NEXTINDEX' class="panel panel-default panel-in-workspace" style="position:absolute" ng-style="applyStyle(NEXTINDEX)">
+<div default-panel update-panel-config panel-configs="Config" can-resize='true' can-drag='true' id='NEXTINDEX' class="panel panel-default panel-in-workspace" style="position:absolute" ng-style="applyStyle('NEXTINDEX')">
 
-<div class="panel-heading" ng-show="Config.Workspaces[0].Panels[NEXTINDEX].showpanelheading">
+<div class="panel-heading" ng-show="getPanelShowHeading('NEXTINDEX')">
 <h3 class="panel-title">
-	{{Config.Workspaces[0].Panels[NEXTINDEX].panelTitle}}
+	{{ getPanelTitle('NEXTINDEX') }}
 </h3>
 </div>
 

@@ -123,3 +123,6 @@ Control Panels
 .checkbox {
 	cursor: pointer;
 }
+#config-footer {
+	text-align: center;
+}

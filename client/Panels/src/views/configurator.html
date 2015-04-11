@@ -1,44 +1,58 @@
 <div control-panel id="configurator" class="config" panel-configs="Config" can-resize='true' can-drag='true' ng-show='showConfig'>
   <div class="panel-heading">
-      <h4 class="panel-title">Panel: {{currentPanelID || 'None selected'}} </h4>
-    </div>
+    <h4 class="panel-title">Panel ID: {{currentPanelID || 'None selected'}} </h4>
+  </div>
 
   <div class="panel-body">
     
-  <tabset>
-    <tab heading="Style">
-    </p>
-    Position and Size
-    </p>
-    <span>Top: <a href="#" editable-number="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.top" e-min="0" buttons="no">
-      {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.top | number : 2 || 0 }} </a>
-    </span>
-    <span>Left: <a href="#" editable-number="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.left" e-min="0" buttons="no">
-      {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.left | number : 2 || 0 }} </a>
-    </span>
-    </br>
-    <span>Height: <a href="#" editable-number="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.height" e-min="0" buttons="no">
-      {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.height | number : 2  || 0 }} </a>
-    </span>
-    <span>Width: <a href="#" editable-number="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.width" e-min="0" buttons="no">
-      {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.width | number  :2 || 0 }} </a>
-    </span>
-  <hr> 
-  <input type="checkbox" ng-checked="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].showpanelheading" ng-model="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].showpanelheading"> Panel Heading</input>
-  </br></br>Panel Body </br>
-  <div>Panel Title: <a href='#' editable-text="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].panelTitle" buttons="no">{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].panelTitle || 'Panel Title'}}</a></div>
+    <tabset>
+      <tab heading="Style">
+      </br>
+        <accordion>
+          <accordion-group>
+            <accordion-heading><div>Position and Size</div></accordion-heading>
+            <span>Top: <a href="#" editable-number="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.top" e-min="0" buttons="no">
+              {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.top | number : 2 || 0 }} </a>
+            </span>
+            <span>Left: <a href="#" editable-number="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.left" e-min="0" buttons="no">
+              {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.left | number : 2 || 0 }} </a>
+            </span>
+            </p>
+            <span>Height: <a href="#" editable-number="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.height" e-min="0" buttons="no">
+              {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.height | number : 2  || 0 }} </a>
+            </span>
+            <span>Width: <a href="#" editable-number="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.width" e-min="0" buttons="no">
+              {{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.width | number  :2 || 0 }} </a>
+            </span>
+          </accordion-group> 
+          <accordion-group>
+            <accordion-heading><div>Panel Header</div></accordion-heading>
+            <input type="checkbox" ng-checked="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].showpanelheading" ng-model="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].showpanelheading"> Panel Header</input>
+            </p>
+            <div>Panel Title: <a href='#' editable-text="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].panelTitle" buttons="no">{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].panelTitle || 'Panel Title'}}</a></div>
+          </accordion-group>
+          <accordion-group>
+            <accordion-heading><div>Panel Body</div></accordion-heading>
+            <div>Background:  
+              <a href='#' editable-text="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.backgroundColor" buttons="no">{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.backgroundColor || 'white'}}</a>
+            <a href="#" colorpicker ng-model="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.backgroundColor" colorpicker-close-on-select><i class="fa fa-eyedropper"></i></a>
+            </div>
+            </p>
+            <div>Font Color: <a href="#" editable-color="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.color">{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.color || 'black' }}</a></div>
+            </p>
+            <div>Font Size: <a href="#" editable-text="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.fontSize" buttons='no'>{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.fontSize || '0px'}}</a></div>
+            </p>
+            <div>Font Family: <a href="#" editable-text="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.fontFamily" buttons='no'>{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.fontFamily || 'Arial, Helvetica, sans-serif'}}</a></div>
+          </accordion-group>
+        </accordion>
+      </tab>
+      <tab heading="Content">
+      </tab>
+    </tabset>
+  </div> <!-- End panel body -->
 
-  <div>Background:  
-    <a href='#' editable-text="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.backgroundColor" buttons="no">{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.backgroundColor || 'white'}}</a>
-  <a colorpicker ng-model="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.backgroundColor" colorpicker-close-on-select><i class="fa fa-eyedropper"></i></a>
+  <div id="config-footer" class="panel-footer" ng-show="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex]">
+    <button ng-click="deleteCurrentPanel()">Delete Panel</button>
   </div>
 
-  <div>Font Color: <a href="#" editable-color="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.color">{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.color || 'black' }}</a></div>
-  <div>Font Size: <a href="#" editable-text="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.fontSize" buttons='no'>{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.fontSize || '0px'}}</a></div>
-  <div>Font Family: <a href="#" editable-text="Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.fontFamily" buttons='no'>{{ Config.Workspaces[currentWorkspaceIndex].Panels[currentPanelIndex].style.fontFamily || 'Arial, Helvetica, sans-serif'}}</a></div>
-    </tab>
-    <tab heading="Content">
-    </tab>
-  </tabset>
-  </div> 
 </div>
