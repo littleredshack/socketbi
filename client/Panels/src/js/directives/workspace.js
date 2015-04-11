@@ -4,6 +4,13 @@ app.directive('workspace', function ($compile) {
     template: '<div id="workspace"></div>',
     replace: true,
     link: function (scope, elem, attrs) {
+      elem.bind("click", function( evt ){
+        if(evt.currentTarget === evt.target) {
+          scope.currentPanelID = '';
+          scope.currentPanelIndex = '';
+          scope.$apply();
+        };
+      });
       elem.draggable({
         drag: function(evt,ui) {
         }

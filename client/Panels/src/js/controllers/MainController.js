@@ -38,6 +38,10 @@ Returns a style object used by default Panels in their ng-style
       return
     else thisPanel = $scope.Config.Workspaces[$scope.currentWorkspaceIndex].Panels[panelindex];
 
+    if (panelindex === $scope.currentPanelIndex && $scope.showConfig)
+      thisPanel.style.borderColor = 'yellow';
+    else thisPanel.style.borderColor = '';
+
     return thisPanel.style ;
   }
 
