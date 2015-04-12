@@ -86,5 +86,27 @@ Will probably disable that functionality
 
 });
 
+app.controller('LoginController', function ($scope, $modal) {
 
+  $scope.showLoginModal = function (size) {
+    var modalInstance = $modal.open({
+      templateUrl: 'views/loginModalTemplate.html',
+      controller: 'LoginFormController',
+      size: size
+    });
+  };
 
+});
+
+app.controller('LoginFormController', function ($scope, $modalInstance) {
+
+  $scope.submit = function (email,pwd) {
+    //console.log(email,pwd);
+    $modalInstance.close();
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+
+});

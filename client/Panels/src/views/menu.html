@@ -1,6 +1,10 @@
-<div control-panel id='menu' panel-configs="panelConfigs" can-resize='true' can-drag='true' class="menu animated slideInDown">
+<div control-panel id="menu" panel-configs="panelConfigs" can-resize="true" can-drag="true" class="menu animated slideInDown">
   <div class="panel-body">
-    <span>Login</span>
+    
+    <!-- <span ng-controller="LoginController" ng-click="showLoginModal()">Login</span>
+-->
+
+    <span ng-controller="LoginController" ng-click=showLoginModal("sm")>Login</span>
     <span>|</span>
     <span show-config-button ng-click="showNavigator=!showNavigator">{{showNavigator?'Hide':'Show'}} Nav</span>
     <span>|</span>

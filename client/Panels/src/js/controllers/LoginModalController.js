@@ -1,6 +1,6 @@
 // LoginModalController.js
 
-app.controller('LoginModalController', function ($scope, UsersApi) {
+app.controller('LoginController', function ($scope, UsersApi) {
 
   this.cancel = $scope.$dismiss;
 
