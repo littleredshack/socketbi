@@ -1,11 +1,11 @@
 # socketbi
-BI server and angularjs client using socket.io for realtime data access
+BI server and websocket client for realtime data access
 
 SocketBI server runs on nodeJS. Server can be configured to connect to multiple datasources, SQL and NoSQL.
 
-Client is written in angularjs and can be configured with multiple data panels to display data from any of the server's datasources.
+Client is written in angularjs and can be configured with multiple data panels to display data from any of the server's datasources. Data panels can be positioned anywhere on the workspace and can be styled to create dashboards in a freeform layout.
 
-Data panels can be positioned anywhere on the workspace and can be styled to create dashboards in a freeform layout.
+Client and Server communicate using socket.io
 
 Further details on project WIKI page
 
