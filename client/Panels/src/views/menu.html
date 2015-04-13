@@ -4,7 +4,7 @@
     <!-- <span ng-controller="LoginController" ng-click="showLoginModal()">Login</span>
 -->
 
-    <span ng-controller="LoginController" ng-click=showLoginModal("sm")>Login</span>
+    <span login-button>{{!sessionKey?'Login':'Logout'}}</span>
     <span>|</span>
     <span show-config-button ng-click="showNavigator=!showNavigator">{{showNavigator?'Hide':'Show'}} Nav</span>
     <span>|</span>
@@ -15,5 +15,7 @@
     <span>Save Layout</span>
     <span>|</span>
     <span dock-button ng-click="docked=!docked">{{docked?'Dock Menu':'Float Menu'}}</span>
+    <span>|</span>
+    <span id="logged-in-username" ng-show="sessionKey">{{user}}</span>
  </div>
 </div>

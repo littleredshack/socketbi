@@ -129,3 +129,7 @@ Control Panels
 .modal-title {
 	text-align: center;
 }
+#logged-in-username {
+	float: right;
+	margin-right: 20px;
+}

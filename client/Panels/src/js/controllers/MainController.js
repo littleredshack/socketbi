@@ -1,4 +1,4 @@
-app.controller('MainController', function ($http, $scope) {
+app.controller('MainController', function ($http, $scope, socketbi) {
 
 // Array Remove - By John Resig (MIT Licensed)
 // http://ejohn.org/blog/javascript-array-remove/
@@ -9,7 +9,7 @@ var removeArrayItem = function(array, from, to) {
 };
 
   $scope.currentWorkspaceIndex = 0;
-  $scope.style={};
+  $scope.sessionKey = false;
 
   $scope.Config = {
     Workspaces: [
@@ -48,7 +48,7 @@ Returns a style object used by default Panels in their ng-style
 /*
 Meant to be used for advanced config in configurator
 Will probably disable that functionality
-*/
+
   $scope.newStyle = function(ns) {
     try {
       var obj=JSON.parse(ns);
@@ -63,6 +63,7 @@ Will probably disable that functionality
     $scope.setCurrentPanelValue('style',$scope.style);
     return $scope.style;
   };
+*/
 
   $scope.deleteCurrentPanel = function () {
     var pId = $scope.Config.Workspaces[$scope.currentWorkspaceIndex].Panels[$scope.currentPanelIndex].id;
@@ -84,23 +85,69 @@ Will probably disable that functionality
     return $scope.Config.Workspaces[0].Panels[panelindex].showpanelheading;
   }
 
+
+  socketbi.on('connect', function () {
+    $scope.socketConnected = true;
+  });
+
+  socketbi.on('auth', function (data) {
+    // If authentication failed
+    if (data == 'failed') {
+      console.log(data);
+      return;
+    }
+    // If authentication successful then store session key
+    //console.log("auth successful " +data);
+    $scope.sessionKey = data;
+    //sessionStorage.sessionKey = data;
+  });
+
+  socketbi.on('dataresponse', function (data) {
+    console.log(data);
+    var evt = document.createEvent("Event");
+    evt.initEvent("SOCKETBI.dataresponse",true,true);
+    evt.data = data;
+    document.dispatchEvent(evt);
+  });
+
+  socketbi.on('dblist', function (data) {
+    $scope.dblist = data;
+    var evt = document.createEvent("Event");
+    evt.initEvent("SOCKETBI.dbList",true,true);
+    evt.data = data;
+    document.dispatchEvent(evt);
+  });
+
 });
 
-app.controller('LoginController', function ($scope, $modal) {
 
-  $scope.showLoginModal = function (size) {
-    var modalInstance = $modal.open({
-      templateUrl: 'views/loginModalTemplate.html',
-      controller: 'LoginFormController',
-      size: size
-    });
-  };
-
+app.directive('loginButton', function ($modal) {
+  return {
+    restrict: 'A',
+    link: function (scope, elem, attrs) {
+      elem.bind('click', function () {
+        if(scope.sessionKey) {
+          scope.sessionKey = null;
+          scope.$apply();
+          return;
+        }
+        if (!scope.sessionKey) {
+          var modalInstance = $modal.open({
+            templateUrl: 'views/loginModalTemplate.html',
+            controller: 'LoginFormController',
+            size: 'sm'
+          });
+         }
+      });
+    }
+  }
 });
 
-app.controller('LoginFormController', function ($scope, $modalInstance) {
+app.controller('LoginFormController', function ($rootScope, $scope, $modalInstance, socketbi) {
 
   $scope.submit = function (email,pwd) {
+    $rootScope.user = email;
+    socketbi.emit('auth', {'user':'glen','password':'password'});
     //console.log(email,pwd);
     $modalInstance.close();
   };
@@ -110,3 +157,4 @@ app.controller('LoginFormController', function ($scope, $modalInstance) {
   };
 
 });
+
