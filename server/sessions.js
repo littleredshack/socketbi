@@ -23,6 +23,7 @@ exports.authenticateUser = function(userData) {
 	logger.debug(userData);
 // Get index of this username in users array
 	var uIndex = users.map(function(e) { return e.username; }).indexOf(userData.user) ;
+if (uIndex < 0) return false;
 // Check if the passwords match
 if (users[uIndex].password == userData.password) 
 	return true 

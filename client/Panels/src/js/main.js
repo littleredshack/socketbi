@@ -11,3 +11,4 @@ app.factory('socketbi', function (socketFactory) {
     ioSocket: io.connect('localhost:3080')
   });
 })
+
