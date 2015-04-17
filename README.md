@@ -9,7 +9,7 @@ Datasource names can either refer to something like a MySQL or Mongo database - 
 
 The client loads from a web server (I use apache running on Windows). It is written in angularjs and can be configured with multiple data panels to display data from any of the server's datasources. Data panels can be positioned anywhere on the workspace and can be styled to create dashboards in a freeform layout. They can even contain custom HTML and javascript so you can stick whatever you like in a Panel and build up a whole dashboard in a workspace. Then you can have multiple workspaces. 
 
-Each Panel has a config screen available to style it and to define its content. The most basic configuration for a Panel typically involves selecting a datasource query from the list and choosing a renderer. The first renderer will just be a table display and then I will do one to display Highcharts in Panels. 
+Each Panel has a config screen available to style it and to define its content. The most basic configuration for a Panel typically involves selecting a datasource query from the list and choosing a renderer. The first renderer will just be a table display and then I will do one to display charts in Panels. 
 
 Panels will also be able to communicate with each other. So an event in one Panel can change a variable which another Panel is watching for. This means you could have filters being passed between Panels, you can filter a whole dashboard or provide drilldown functionality to display summary in one Panel and detail in another. etc. etc. 
 
