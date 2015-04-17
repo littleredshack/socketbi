@@ -3,7 +3,7 @@ I have been building BI solutions for years using off-the-shelf open source and 
 
 SOCKETBI is a BI server and websocket client.  The two are totally separate code. 
 
-The server is intended to be a data server that provides the ability fora client to access multiple data sources through a single web socket. The server runs on nodeJS. Start it by running 'node app.js'. The server can be configured to connect to any number of datasources. These can be SQL, NoSQL or even a bit of custom javascript. The idea then is that a client connects to the server over a socket and receives a list of available datasource names. 
+The server is intended to be a data server that provides the ability fora client to access multiple data sources through a web socket interface. The server runs on nodeJS. Start it by running 'node app.js'. The server can be configured to connect to any number of datasources. These can be SQL, NoSQL or even a bit of custom javascript. The idea then is that a client connects to the server over a socket and receives a list of available datasource names. 
 
 Datasource names can either refer to something like a MySQL or Mongo database - the client can then specify a query to run against that datasource - or a name in the list could refer to a prebuilt query on the server. In this case the client just requests that datasource name and gets the data back. So lots of flexibility and control there.
 
