@@ -15,6 +15,8 @@ Panels will also be able to communicate with each other. So an event in one Pane
 
 Or you can just take the Panels code and strip out the socket library I provide and build your own client. But do let me know if you do something cool.
 
+From a design point of view my approach is to secure the data access through the socket api and then leave all the display stuff to be done on the client. You will be able to choose a 'renderer' in a Panel. So the first one I will do will be something to integrate Highcharts into Panels. The client configuration will then involve selecting a datasource query from the list and choosing a renderer.  
+
 All good fun and pretty useful too I think.
 
 Further details on project WIKI page
