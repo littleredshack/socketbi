@@ -7,7 +7,7 @@ The idea behind the server is to provide an open data server that gives a custom
 
 Datasource names can either refer to something like a MySQL or Mongo database - the client can then specify a query to run against that datasource - or a name in the list could refer to a prebuilt query on the server. In this case the client just requests that datasource name and gets the data back. So lots of flexibility and control there.
 
-The socket api from the server can be accessed from any client - that's what sockets are good at. Obviously there is authentication and authorisation and I will set up the server to run on SSL. So you can go ahead and write your own client or I can write others for mobile etc.
+The socket api from the server can be accessed from any client - that's what sockets are good at. There is authentication and authorisation at the data and api level and I will set up the server to run on SSL. So you can go ahead and write your own client or I can write others for mobile etc.
 
 The 'Panels' client that I provide here loads from a web server (I use apache running on Windows). It is written in angularjs and can be configured with multiple data panels to display data from any of the server's datasources. Data panels can be positioned anywhere on the workspace and can be styled to create dashboards in a freeform layout. They can even contain custom HTML and javascript so you can stick whatever you like in a Panel and build up a whole dashboard in a workspace. Then you can have multiple workspaces. Each Panel has a whole bunch of config available to style it and to define its content.
 
