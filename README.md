@@ -1,5 +1,5 @@
 # socketbi
-I have been building BI solutions for years and never found one that works the way I do. So I decided to have a go at writing one.
+I have been building BI solutions for years using off-the-shelf open source and commercial products and never found one that works the way I do. So I decided to have a go at writing one.
 
 SOCKETBI is a BI server and websocket client.  The two are totally separate code. 
 
