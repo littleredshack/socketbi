@@ -1,11 +1,17 @@
 # socketbi
-BI server and websocket client for realtime data access
+I have been building BI solutions for years and never found one that works the way I do. So I decided to have a go at writing one.
 
-SocketBI server runs on nodeJS. Server can be configured to connect to multiple datasources, SQL and NoSQL.
+So SOCKETBI is a BI server and websocket client.  The two are totally separate (seperate?) code. 
 
-Client is written in angularjs and can be configured with multiple data panels to display data from any of the server's datasources. Data panels can be positioned anywhere on the workspace and can be styled to create dashboards in a freeform layout.
+The server runs on nodeJS. Start it by running 'node app.js'. It can be configured to connect to multiple datasources, SQL and NoSQL. The idea then is that a client connects to the server over a socket and can then get a list of available datasources. The datasources can be either something like a MySQL or Mongo database for example. The client can then specify a query to run against that datasource. Or a datasource could be a preconfigured query that the client then just requests and gets the data back. So lots of flexibility and control there.
 
-Client and Server communicate using socket.io
+The idea here is that the socket api from the server can be accessed from any client. So you can go ahead and write your own and I can write others for mobile etc.
+
+The 'Panels' client that I provide here loads from a web server (I use apache running on Windows). It is written in angularjs and can be configured with multiple data panels to display data from any of the server's datasources. Data panels can be positioned anywhere on the workspace and can be styled to create dashboards in a freeform layout. They can even contain custom HTML and javascript so you can stick whatever you like in a Panel and build up a whole dashboard in a workspace. Then you can have multiple workspaces.
+
+Panels will also be able to communicate with each other. So an event in one Panel can trigger an action in another Panel. This means you could have filters being passed between Panels so you can filter a whole dashboard or provide drilldown functionality to display summary in one Panel and detail in another. etc. etc.
+
+All good fun and pretty useful too I think.
 
 Further details on project WIKI page
 
