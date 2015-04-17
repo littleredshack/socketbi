@@ -1,7 +1,7 @@
 # socketbi
 I have been building BI solutions for years using off-the-shelf open source and commercial products and never found one that works the way I do. So I decided to have a go at writing one.
 
-SOCKETBI is a data server and websocket client.  The two are totally separate code. 
+SOCKETBI is a data server and websocket client.  The two run totally separate code and communicate via a websocket api. 
 
 The server runs on nodeJS. Start it by running 'node app.js'. The server can be configured to connect to any number of datasources. These can be SQL, NoSQL, asynchronous messages or even a bit of custom javascript. The idea then is that a client connects to the server over a socket and receives a list of available datasource names. 
 
