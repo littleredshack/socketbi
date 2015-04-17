@@ -11,7 +11,7 @@ The socket api from the server can be accessed from any client - that's what soc
 
 The 'Panels' client that I provide here loads from a web server (I use apache running on Windows). It is written in angularjs and can be configured with multiple data panels to display data from any of the server's datasources. Data panels can be positioned anywhere on the workspace and can be styled to create dashboards in a freeform layout. They can even contain custom HTML and javascript so you can stick whatever you like in a Panel and build up a whole dashboard in a workspace. Then you can have multiple workspaces. Each Panel has a whole bunch of config available to style it and to define its content.
 
-Panels will also be able to communicate with each other. So an event in one Panel can change a variable which another Panel is watching for. This means you could have filters being passed between Panels so you can filter a whole dashboard or provide drilldown functionality to display summary in one Panel and detail in another. etc. etc.
+Panels will also be able to communicate with each other. So an event in one Panel can change a variable which another Panel is watching for. This means you could have filters being passed between Panels, you can filter a whole dashboard or provide drilldown functionality to display summary in one Panel and detail in another. etc. etc.
 
 Or you can just take the Panels code and strip out the socketbi library I provide and build your own client. But do let me know if you do something cool.
 
