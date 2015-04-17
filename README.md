@@ -7,7 +7,7 @@ The idea behind the server is to provide an open data server that provides one p
 
 Datasource names can either refer to something like a MySQL or Mongo database - the client can then specify a query to run against that datasource - or a name in the list could refer to a prebuilt query on the server. In this case the client just requests that datasource name and gets the data back. So lots of flexibility and control there.
 
-The 'Panels' client that I provide here loads from a web server (I use apache running on Windows). It is written in angularjs and can be configured with multiple data panels to display data from any of the server's datasources. Data panels can be positioned anywhere on the workspace and can be styled to create dashboards in a freeform layout. They can even contain custom HTML and javascript so you can stick whatever you like in a Panel and build up a whole dashboard in a workspace. Then you can have multiple workspaces. 
+The client loads from a web server (I use apache running on Windows). It is written in angularjs and can be configured with multiple data panels to display data from any of the server's datasources. Data panels can be positioned anywhere on the workspace and can be styled to create dashboards in a freeform layout. They can even contain custom HTML and javascript so you can stick whatever you like in a Panel and build up a whole dashboard in a workspace. Then you can have multiple workspaces. 
 
 Each Panel has a config screen available to style it and to define its content. The most basic configuration for a Panel typically involves selecting a datasource query from the list and choosing a renderer. The first renderer will just be a table display and then I will do one to display Highcharts in Panels. 
 
