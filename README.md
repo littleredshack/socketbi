@@ -13,7 +13,7 @@ The 'Panels' client that I provide here loads from a web server (I use apache ru
 
 Panels will also be able to communicate with each other. So an event in one Panel can change a variable which another Panel is watching for. This means you could have filters being passed between Panels so you can filter a whole dashboard or provide drilldown functionality to display summary in one Panel and detail in another. etc. etc.
 
-Or you can just take the Panels code and strip out the socket library I provide and build your own client. But do let me know if you do something cool.
+Or you can just take the Panels code and strip out the socketbi library I provide and build your own client. But do let me know if you do something cool.
 
 From a design point of view my approach is to secure the data access through the socket api and then leave all the display stuff to be done on the client. You will be able to choose a 'renderer' in a Panel. So the first one I will do will be something to integrate Highcharts into Panels. The client configuration will then involve selecting a datasource query from the list and choosing a renderer.  
 
