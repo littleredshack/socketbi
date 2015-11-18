@@ -53,7 +53,7 @@ exports.newSession = function (authData) {
 	var sessionStringEncrypted = encrypt(sessionString);
 	var sesid = sessionID(sessionStore,authData.user);
 	logger.debug("sesid: " +sesid);
-	// If user already has a session then remove the user session from the array if
+	// If user already has a session then remove the user session from the array
 	// so each user can only have one session at a time
 	if(sesid >= 0) removeArrayItem(sessionStore,sesid);
 	// Add the user and session key to the array
